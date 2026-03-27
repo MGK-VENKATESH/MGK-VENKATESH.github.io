@@ -1,0 +1,2479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>MGK-Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Share+Tech+Mono&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+<style>
+  :root {
+    --bg: #000000;
+    --bg2: #080808;
+    --bg3: #0f0f0f;
+    --accent: #00f5ff;
+    --accent2: #7c3aed;
+    --accent3: #10b981;
+    --text: #e2e8f0;
+    --muted: #64748b;
+    --border: rgba(0,245,255,0.15);
+    --glow: 0 0 20px rgba(0,245,255,0.3);
+    --glow2: 0 0 20px rgba(124,58,237,0.3);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── PURE BLACK BACKGROUND ── */
+  .stars-bg {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background: #020817;
+  }
+  .stars-bg::before { display: none; }
+
+  /* ── AURORA CURSOR EFFECT ── */
+  .grid-overlay {
+    position: fixed; inset: 0; z-index: 2; pointer-events: none;
+    background: transparent;
+    transition: none;
+  }
+  .aurora-layer {
+    position: fixed; inset: 0; z-index: 2; pointer-events: none;
+    background: transparent;
+  }
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 3rem;
+    background: rgba(2,8,23,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Orbitron', monospace;
+    font-weight: 700; font-size: 1.1rem;
+    color: var(--accent);
+    letter-spacing: 2px;
+    text-shadow: 0 0 12px rgba(0,245,255,0.5);
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-family: 'Share Tech Mono', monospace;
+    color: var(--muted); text-decoration: none;
+    font-size: 0.85rem; letter-spacing: 1px;
+    transition: color 0.3s, text-shadow 0.3s;
+  }
+  .nav-links a:hover { color: var(--accent); text-shadow: 0 0 8px rgba(0,245,255,0.5); }
+  .nav-cta {
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent) !important;
+    padding: 0.4rem 1.2rem;
+    border-radius: 2px;
+  }
+  .nav-cta:hover { background: rgba(0,245,255,0.08) !important; }
+
+  /* ── MAIN CONTENT ── */
+  main { position: relative; z-index: 1; }
+  section { padding: 6rem 3rem; max-width: 1100px; margin: 0 auto; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding-top: 6rem; padding-bottom: 4rem;
+    max-width: 1100px; margin: 0 auto;
+  }
+  .hero-tag {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.8rem; letter-spacing: 3px;
+    color: var(--accent); margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .hero-tag::before {
+    content:''; display:inline-block; width:30px; height:1px;
+    background: var(--accent);
+    box-shadow: 0 0 6px var(--accent);
+  }
+  .hero-name {
+    font-family: 'Orbitron', monospace;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 900; line-height: 1.05;
+    color: #fff;
+    text-shadow: 0 0 40px rgba(0,245,255,0.2);
+    margin-bottom: 0.5rem;
+  }
+  .hero-name span { color: var(--accent); text-shadow: 0 0 20px rgba(0,245,255,0.6); }
+  .hero-title {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    color: var(--muted); margin-bottom: 1.5rem;
+    letter-spacing: 2px;
+  }
+  .hero-title .typed-text { color: var(--accent2); }
+  .cursor-blink {
+    display: inline-block; width: 2px; height: 1.2em;
+    background: var(--accent); vertical-align: middle;
+    animation: blink 1s step-end infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+  .hero-bio {
+    font-size: 1rem; color: var(--muted); max-width: 560px;
+    line-height: 1.8; margin-bottom: 2.5rem;
+    border-left: 2px solid var(--accent2);
+    padding-left: 1.25rem;
+  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    font-family: 'Share Tech Mono', monospace;
+    background: var(--accent); color: #000;
+    padding: 0.75rem 2rem; border: none; border-radius: 2px;
+    font-size: 0.85rem; letter-spacing: 2px; cursor: pointer;
+    text-decoration: none; display: inline-block;
+    transition: all 0.3s; font-weight: 600;
+    box-shadow: 0 0 20px rgba(0,245,255,0.4);
+  }
+  .btn-primary:hover { box-shadow: 0 0 40px rgba(0,245,255,0.6); transform: translateY(-2px); }
+  .btn-secondary {
+    font-family: 'Share Tech Mono', monospace;
+    background: transparent; color: var(--text);
+    padding: 0.75rem 2rem;
+    border: 1px solid var(--border);
+    border-radius: 2px; font-size: 0.85rem;
+    letter-spacing: 2px; cursor: pointer;
+    text-decoration: none; display: inline-block;
+    transition: all 0.3s;
+  }
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+  .hero-stats {
+    display: flex; gap: 3rem; margin-top: 4rem;
+    border-top: 1px solid var(--border); padding-top: 2rem;
+    flex-wrap: wrap;
+  }
+  .stat-item { text-align: center; }
+  .stat-num {
+    font-family: 'Orbitron', monospace; font-size: 2rem;
+    font-weight: 700; color: var(--accent);
+    text-shadow: 0 0 12px rgba(0,245,255,0.4);
+  }
+  .stat-label { font-size: 0.75rem; color: var(--muted); letter-spacing: 2px; margin-top: 0.25rem; }
+  .hero-scroll {
+    position: absolute; bottom: 2rem; left: 50%;
+    transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    color: var(--muted); font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem; letter-spacing: 2px; animation: float 2s ease-in-out infinite;
+  }
+  @keyframes float { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(-8px)} }
+  .scroll-line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+  }
+
+  /* ── SECTION HEADERS ── */
+  .section-header { margin-bottom: 3rem; }
+  .section-tag {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.75rem; letter-spacing: 3px; color: var(--accent);
+    margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.75rem;
+  }
+  .section-tag::before {
+    content:'['; color: var(--accent2);
+  }
+  .section-tag::after {
+    content:']'; color: var(--accent2);
+  }
+  .section-title {
+    font-family: 'Orbitron', monospace;
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 700; color: #fff;
+  }
+  .section-line {
+    width: 60px; height: 2px;
+    background: linear-gradient(to right, var(--accent), var(--accent2));
+    margin-top: 0.75rem;
+    box-shadow: 0 0 8px rgba(0,245,255,0.4);
+  }
+
+  /* ── ABOUT ── */
+  .about-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 4rem; align-items: start;
+  }
+  .about-grid > :last-child {
+    position: sticky;
+    top: 100px;
+    align-self: start;
+  }
+  .about-text p { color: var(--muted); line-height: 1.9; margin-bottom: 1rem; }
+  .about-text p strong { color: var(--accent); font-weight: 500; }
+  .about-interests { margin-top: 2rem; }
+  .interests-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.75rem; letter-spacing: 2px; color: var(--accent2);
+    margin-bottom: 0.75rem;
+  }
+  .interest-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .tag {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.75rem; padding: 0.3rem 0.8rem;
+    border: 1px solid var(--border);
+    border-radius: 2px; color: var(--muted);
+    transition: all 0.3s;
+  }
+  .tag:hover { border-color: var(--accent); color: var(--accent); background: rgba(0,245,255,0.05); }
+  .about-terminal {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 6px;
+    box-shadow: var(--glow);
+    position: relative; z-index: 1;
+    will-change: transform;
+  }
+  .about-terminal:hover {
+    border-color: rgba(0,245,255,0.4) !important;
+    z-index: 10;
+    box-shadow: 0 0 30px rgba(0,245,255,0.3) !important;
+  }
+  .terminal-header {
+    background: var(--bg3); padding: 0.6rem 1rem;
+    display: flex; align-items: center; gap: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .t-dot { width: 12px; height: 12px; border-radius: 50%; }
+  .t-dot.r { background: #ff5f57; }
+  .t-dot.y { background: #ffbd2e; }
+  .t-dot.g { background: #28ca41; }
+  .terminal-title {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.75rem; color: var(--muted); margin-left: 0.5rem;
+  }
+  .terminal-body { padding: 1.5rem; font-family: 'Share Tech Mono', monospace; font-size: 0.82rem; }
+  .t-line { display: flex; gap: 0.5rem; margin-bottom: 0.5rem; flex-wrap: wrap; }
+  .t-prompt { color: var(--accent3); }
+  .t-cmd { color: var(--accent); }
+  .t-output { color: var(--muted); padding-left: 1rem; }
+  .t-key { color: var(--accent2); }
+  .t-val { color: var(--accent3); }
+
+  /* ── SKILLS ── */
+  .skills-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    overflow: visible;
+  }
+  .skill-category {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 6px; padding: 1.5rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .skill-category:hover { border-color: rgba(0,245,255,0.3); box-shadow: var(--glow); }
+  .skill-cat-title {
+    font-family: 'Orbitron', monospace; font-size: 0.8rem;
+    letter-spacing: 2px; color: var(--accent); margin-bottom: 1.25rem;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .skill-cat-icon { font-size: 1.1rem; vertical-align: middle; }
+  .filter-btn i, .cert-filter-btn i { font-size: 0.9rem; vertical-align: middle; margin-right: 0.3rem; }
+  .devicon-azure-plain { color: #0078d4; }
+  .devicon-python-plain { color: #3776ab; }
+  .devicon-tensorflow-original { color: #ff6f00; }
+  .devicon-opencv-plain { color: #5c3ee8; }
+  .devicon-mysql-plain { color: #4479a1; }
+  .devicon-flask-original { color: var(--text); }
+  .devicon-pandas-original { color: #150458; filter: brightness(3); }
+  .devicon-keras-plain { color: #d00000; }
+  .devicon-vscode-plain { color: #007acc; }
+  .devicon-github-original { color: var(--text); }
+  .skill-items { display: flex; flex-direction: column; gap: 0.75rem; }
+  .skill-item {}
+  .skill-info { display: flex; justify-content: space-between; margin-bottom: 0.3rem; }
+  .skill-name { font-size: 0.85rem; color: var(--text); }
+  .skill-pct { font-family: 'Share Tech Mono', monospace; font-size: 0.75rem; color: var(--accent); }
+  .skill-bar { height: 3px; background: rgba(255,255,255,0.06); border-radius: 2px; overflow: hidden; }
+  .skill-fill {
+    height: 100%; border-radius: 2px;
+    background: linear-gradient(to right, var(--accent2), var(--accent));
+    box-shadow: 0 0 6px rgba(0,245,255,0.4);
+    width: 0; transition: width 1.2s cubic-bezier(0.22,1,0.36,1);
+  }
+
+  /* ── EDUCATION ── */
+  .edu-timeline { position: relative; padding-left: 2rem; }
+  .edu-timeline::before {
+    content:''; position:absolute; left:0; top:0; bottom:0;
+    width:1px; background: linear-gradient(to bottom, var(--accent), var(--accent2), transparent);
+  }
+  .edu-item {
+    position: relative; margin-bottom: 2.5rem;
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 6px; padding: 1.5rem 1.75rem;
+    transition: border-color 0.3s;
+  }
+  .edu-item { transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1); position: relative; z-index: 1; }
+  .edu-item:hover { border-color: rgba(0,245,255,0.3); transform: scale(1.02); z-index: 10; box-shadow: 0 0 30px rgba(0,245,255,0.3); }
+  .edu-item::before {
+    content:''; position:absolute; left:-2.4rem; top:1.75rem;
+    width:10px; height:10px; border-radius:50%;
+    background: var(--accent); box-shadow: 0 0 10px var(--accent);
+  }
+  .edu-year {
+    font-family: 'Share Tech Mono', monospace; font-size: 0.75rem;
+    color: var(--accent); letter-spacing: 2px; margin-bottom: 0.4rem;
+  }
+  .edu-degree {
+    font-family: 'Orbitron', monospace; font-size: 1rem;
+    font-weight: 600; color: #fff; margin-bottom: 0.3rem;
+  }
+  .edu-inst { font-size: 0.9rem; color: var(--accent2); margin-bottom: 0.5rem; }
+  .edu-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.7; }
+
+  /* ── PROJECTS ── */
+  .projects-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+  .project-card {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 6px; padding: 1.75rem;
+    transition: all 0.3s; position: relative; overflow: hidden;
+  }
+  .project-card::before {
+    content:''; position:absolute; top:0; left:0; right:0; height:2px;
+    background: linear-gradient(to right, var(--accent2), var(--accent));
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .project-card:hover { border-color: rgba(0,245,255,0.25); transform: scale(1.03); z-index: 10; box-shadow: 0 0 30px rgba(0,245,255,0.3); }
+  .project-card:hover::before { opacity: 1; }
+  .project-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
+  .project-icon {
+    width: 44px; height: 44px; border-radius: 6px;
+    background: rgba(0,245,255,0.08); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+  }
+  .project-links { display: flex; gap: 0.5rem; }
+  .project-link {
+    font-family: 'Share Tech Mono', monospace; font-size: 0.7rem;
+    color: var(--muted); text-decoration: none; padding: 0.25rem 0.6rem;
+    border: 1px solid var(--border); border-radius: 2px;
+    transition: all 0.2s; letter-spacing: 1px;
+  }
+  .project-link:hover { color: var(--accent); border-color: var(--accent); }
+  .project-name {
+    font-family: 'Orbitron', monospace; font-size: 1rem;
+    font-weight: 600; color: #fff; margin-bottom: 0.5rem;
+  }
+  .project-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.25rem; }
+  .project-stack { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .stack-tag {
+    font-family: 'Share Tech Mono', monospace; font-size: 0.7rem;
+    padding: 0.2rem 0.6rem; background: rgba(124,58,237,0.12);
+    border: 1px solid rgba(124,58,237,0.25); border-radius: 2px;
+    color: var(--accent2);
+  }
+
+  /* ── CERTIFICATIONS ── */
+  .certs-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+  .cert-card {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 6px; padding: 1.25rem 1.5rem;
+    display: flex; gap: 1rem; align-items: flex-start;
+    transition: all 0.3s;
+  }
+  .cert-card:hover { border-color: rgba(0,245,255,0.25); transform: scale(1.03); z-index: 10; box-shadow: 0 0 30px rgba(0,245,255,0.3); }
+  .cert-card { transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1); position: relative; z-index: 1; }
+  .cert-badge {
+    width: 42px; height: 42px; flex-shrink: 0; border-radius: 6px;
+    background: linear-gradient(135deg, var(--accent2), var(--accent));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+  }
+  .cert-name { font-size: 0.9rem; font-weight: 500; color: #fff; margin-bottom: 0.25rem; }
+  .cert-issuer { font-family: 'Share Tech Mono', monospace; font-size: 0.75rem; color: var(--accent); margin-bottom: 0.2rem; }
+  .cert-year { font-size: 0.75rem; color: var(--muted); margin-bottom: 0.5rem; }
+    .cert-verify-btn {
+    display: inline-block;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.68rem; letter-spacing: 1px;
+    color: var(--accent); text-decoration: none;
+    padding: 0.2rem 0.65rem;
+    border: 1px solid rgba(0,245,255,0.25);
+    border-radius: 2px;
+    transition: all 0.3s;
+    margin-top: 0.4rem;
+    }
+    .cert-verify-btn:hover {
+    background: rgba(0,245,255,0.08);
+    border-color: var(--accent);
+    box-shadow: 0 0 8px rgba(0,245,255,0.2);
+    }
+  /* ── INTERNSHIPS ── */
+.intern-list { display: flex; flex-direction: column; gap: 1.5rem; }
+.intern-card {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 6px; padding: 1.75rem;
+  transition: all 0.3s; position: relative; overflow: hidden;
+}
+.intern-card::before {
+  content:''; position:absolute; left:0; top:0; bottom:0; width:3px;
+  background: linear-gradient(to bottom, var(--accent), var(--accent2));
+  opacity: 0; transition: opacity 0.3s;
+}
+.intern-card:hover { border-color: rgba(0,245,255,0.25); box-shadow: var(--glow); }
+.intern-card:hover::before { opacity: 1; }
+.intern-top {
+  display: flex; justify-content: space-between;
+  align-items: flex-start; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap;
+}
+.intern-left {}
+.intern-role {
+  font-family: 'Orbitron', monospace; font-size: 0.95rem;
+  font-weight: 600; color: #fff; margin-bottom: 0.3rem;
+}
+.intern-company { font-size: 0.88rem; color: var(--accent); margin-bottom: 0.25rem; }
+.intern-right { display: flex; flex-direction: column; align-items: flex-end; gap: 0.4rem; }
+.intern-duration {
+  font-family: 'Share Tech Mono', monospace; font-size: 0.72rem;
+  color: var(--muted); letter-spacing: 1px;
+}
+.intern-badge {
+  font-family: 'Share Tech Mono', monospace; font-size: 0.65rem;
+  padding: 0.2rem 0.65rem; border-radius: 2px; letter-spacing: 1px;
+}
+.intern-badge.remote {
+  color: var(--accent3); background: rgba(16,185,129,0.08);
+  border: 1px solid rgba(16,185,129,0.25);
+}
+.intern-badge.current {
+  color: var(--accent); background: rgba(0,245,255,0.08);
+  border: 1px solid rgba(0,245,255,0.3);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+.intern-divider {
+  height: 1px; background: var(--border); margin-bottom: 1rem;
+}
+.intern-points { display: flex; flex-direction: column; gap: 0.6rem; }
+.intern-point {
+  display: flex; gap: 0.75rem; align-items: flex-start;
+  font-size: 0.85rem; color: var(--muted); line-height: 1.7;
+}
+.intern-point::before {
+  content: '▸'; color: var(--accent2); flex-shrink: 0;
+  margin-top: 0.1rem; font-size: 0.75rem;
+}
+.intern-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
+.intern-tag {
+  font-family: 'Share Tech Mono', monospace; font-size: 0.68rem;
+  padding: 0.2rem 0.6rem;
+  background: rgba(0,245,255,0.05);
+  border: 1px solid rgba(0,245,255,0.15);
+  border-radius: 2px; color: var(--accent);
+}
+/* ── PROJECT FILTERS ── */
+  .filter-bar {
+    display: flex; flex-wrap: wrap; gap: 0.6rem;
+    margin-bottom: 2.5rem;
+  }
+  .filter-btn {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.75rem; letter-spacing: 1.5px;
+    padding: 0.45rem 1.2rem;
+    border-radius: 50px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.3s;
+    outline: none;
+  }
+  .filter-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(0,245,255,0.05);
+  }
+  .filter-btn.active {
+    border-color: var(--accent);
+    color: #000;
+    background: var(--accent);
+    box-shadow: 0 0 16px rgba(0,245,255,0.5);
+    font-weight: 600;
+  }
+  .project-card {
+    transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    position: relative; z-index: 1;
+  }
+  .project-card.hidden {
+    display: none;
+  }
+
+  /* ── CERT FILTERS ── */
+  .cert-filter-bar {
+    display: flex; flex-wrap: wrap; gap: 0.6rem;
+    margin-bottom: 2rem;
+  }
+  .cert-filter-btn {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.75rem; letter-spacing: 1.5px;
+    padding: 0.45rem 1.2rem;
+    border-radius: 50px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.3s;
+    outline: none;
+  }
+  .cert-filter-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(0,245,255,0.05);
+  }
+  .cert-filter-btn.active {
+    border-color: var(--accent);
+    color: #000;
+    background: var(--accent);
+    box-shadow: 0 0 16px rgba(0,245,255,0.5);
+    font-weight: 600;
+  }
+  .cert-card.hidden { display: none; }
+
+  /* ── FUTURE PROJECTS ── */
+  .future-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.25rem;
+  }
+  .future-card {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 6px; padding: 1.5rem;
+    position: relative; overflow: hidden;
+    transition: all 0.3s;
+  }
+  .future-card:hover { border-color: rgba(124,58,237,0.4); transform: scale(1.03); z-index: 10; box-shadow: 0 0 30px rgba(124,58,237,0.35); }
+  .future-card { transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1) !important; position: relative; z-index: 1; }
+  .future-status {
+    font-family: 'Share Tech Mono', monospace; font-size: 0.72rem;
+    letter-spacing: 1px; margin-bottom: 0.75rem;
+    display: inline-flex; align-items: center; gap: 0;
+    border-radius: 3px; overflow: hidden;
+  }
+  .status-decorator {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.7rem;
+  }
+  .status-dot { display: none; }
+  .status-dot.planning ~ span,
+  .status-dot.research ~ span,
+  .status-dot.ideation ~ span { display: none; }
+  .future-status.planning-tag {
+    background: rgba(124,58,237,0.12);
+    border: 1px solid rgba(124,58,237,0.3);
+    color: var(--accent2);
+  }
+  .future-status.research-tag {
+    background: rgba(245,158,11,0.1);
+    border: 1px solid rgba(245,158,11,0.3);
+    color: #f59e0b;
+  }
+  .future-status.ideation-tag {
+    background: rgba(16,185,129,0.1);
+    border: 1px solid rgba(16,185,129,0.3);
+    color: var(--accent3);
+  }
+  .future-title { font-family: 'Orbitron', monospace; font-size: 0.9rem; font-weight: 600; color: #fff; margin-bottom: 0.5rem; }
+  .future-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.7; }
+
+  /* ── BLOG ── */
+  .blog-list { display: flex; flex-direction: column; gap: 1.25rem; }
+  .blog-card {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 6px; padding: 1.5rem 1.75rem;
+    display: flex; justify-content: space-between; align-items: flex-start;
+    gap: 2rem; transition: all 0.3s; text-decoration: none;
+    cursor: pointer;
+  }
+  .blog-card:hover { border-color: rgba(0,245,255,0.25); box-shadow: var(--glow); }
+  .blog-meta { display: flex; gap: 1rem; margin-bottom: 0.5rem; align-items: center; }
+  .blog-cat {
+    font-family: 'Share Tech Mono', monospace; font-size: 0.7rem;
+    color: var(--accent2); letter-spacing: 1px;
+  }
+  .blog-date { font-family: 'Share Tech Mono', monospace; font-size: 0.7rem; color: var(--muted); }
+  .blog-title { font-size: 0.95rem; font-weight: 500; color: #fff; margin-bottom: 0.4rem; }
+  .blog-excerpt { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+  .blog-arrow {
+    font-family: 'Share Tech Mono', monospace;
+    color: var(--accent); font-size: 1.2rem; flex-shrink: 0;
+    transition: transform 0.3s;
+  }
+  .blog-card:hover .blog-arrow { transform: translateX(4px); }
+
+  /* ── CONTACT ── */
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: start;
+  }
+  .contact-info h3 {
+    font-family: 'Orbitron', monospace; font-size: 1rem;
+    color: var(--accent); margin-bottom: 1rem; letter-spacing: 2px;
+  }
+  .contact-info p { color: var(--muted); font-size: 0.9rem; line-height: 1.8; margin-bottom: 2rem; }
+  .contact-links { display: flex; flex-direction: column; gap: 0.75rem; }
+  .contact-link {
+    display: flex; align-items: center; gap: 1rem;
+    color: var(--muted); text-decoration: none; font-size: 0.9rem;
+    padding: 0.75rem 1rem; border: 1px solid var(--border); border-radius: 4px;
+    transition: all 0.3s; font-family: 'Share Tech Mono', monospace; font-size: 0.82rem;
+  }
+  .contact-link:hover { color: var(--accent); border-color: var(--accent); background: rgba(0,245,255,0.04); }
+  .contact-link-icon { font-size: 1.1rem; display:flex; align-items:center; }
+  .contact-link-icon svg { width:18px; height:18px; fill:currentColor; }
+  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-label {
+    font-family: 'Share Tech Mono', monospace; font-size: 0.72rem;
+    color: var(--accent); letter-spacing: 2px;
+  }
+  .form-input, .form-textarea {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 4px; padding: 0.75rem 1rem;
+    color: var(--text); font-family: 'Inter', sans-serif; font-size: 0.9rem;
+    outline: none; transition: border-color 0.3s;
+    resize: vertical;
+  }
+  .form-input:focus, .form-textarea:focus { border-color: rgba(0,245,255,0.4); }
+  .form-input::placeholder, .form-textarea::placeholder { color: var(--muted); }
+  .form-submit {
+    font-family: 'Share Tech Mono', monospace;
+    background: linear-gradient(135deg, var(--accent2), var(--accent));
+    color: #000; border: none; border-radius: 2px;
+    padding: 0.85rem 2rem; font-size: 0.85rem; letter-spacing: 2px;
+    cursor: pointer; font-weight: 600; transition: all 0.3s;
+    box-shadow: 0 0 20px rgba(0,245,255,0.2);
+    align-self: flex-start;
+  }
+  .form-submit:hover { box-shadow: 0 0 30px rgba(0,245,255,0.4); transform: translateY(-2px); }
+
+  /* ── FOOTER ── */
+  footer {
+    position: relative; z-index: 1;
+    border-top: 1px solid var(--border);
+    padding: 2rem 3rem;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-logo {
+    font-family: 'Orbitron', monospace; font-size: 0.9rem;
+    color: var(--accent); letter-spacing: 2px;
+  }
+  .footer-copy { font-family: 'Share Tech Mono', monospace; font-size: 0.75rem; color: var(--muted); }
+
+  /* ── ANIMATIONS ── */
+  .fade-up {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 5rem 1.5rem; }
+    #hero { padding: 5rem 1.5rem 3rem; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .hero-stats { gap: 2rem; }
+    footer { padding: 1.5rem; }
+  }
+  /* ── LEETCODE CARD ── */
+.code-card {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 6px; padding: 1.75rem;
+  display: flex; flex-direction: column; gap: 1.25rem;
+  transition: all 0.3s; max-width: 480px;
+}
+.code-card:hover { border-color: rgba(0,245,255,0.3); transform: scale(1.03); z-index: 10; box-shadow: 0 0 30px rgba(0,245,255,0.3); }
+.code-card { transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1); position: relative; z-index: 1; }
+.code-card-title {
+  font-family: 'Orbitron', monospace; font-size: 0.85rem;
+  color: var(--accent); letter-spacing: 2px;
+  display: flex; align-items: center; gap: 0.6rem;
+}
+.code-repo {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.85rem 1rem;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 4px; text-decoration: none;
+  transition: all 0.3s; gap: 1rem;
+}
+.code-repo:hover { border-color: var(--accent); background: rgba(0,245,255,0.05); }
+.code-repo-left { display: flex; align-items: center; gap: 0.75rem; }
+.code-repo-icon {
+  width: 36px; height: 36px; border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; flex-shrink: 0;
+}
+.code-repo-icon.py { background: rgba(0,245,255,0.08); border: 1px solid rgba(0,245,255,0.2); }
+.code-repo-icon.sql { background: rgba(124,58,237,0.08); border: 1px solid rgba(124,58,237,0.2); }
+.code-repo-name {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.82rem; color: var(--text); margin-bottom: 0.2rem;
+}
+.code-repo-desc { font-size: 0.75rem; color: var(--muted); }
+.code-repo-arrow {
+  font-family: 'Share Tech Mono', monospace;
+  color: var(--accent); font-size: 1rem;
+  transition: transform 0.3s; flex-shrink: 0;
+}
+.code-repo:hover .code-repo-arrow { transform: translateX(4px); }
+.code-daily-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-family: 'Share Tech Mono', monospace; font-size: 0.72rem;
+  color: var(--accent3); letter-spacing: 1.5px;
+  padding: 0.35rem 0.85rem;
+  border: 1px solid rgba(16,185,129,0.3);
+  border-radius: 2px; background: rgba(16,185,129,0.06);
+  width: fit-content;
+}
+.daily-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--accent3);
+  box-shadow: 0 0 6px var(--accent3);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100%{ opacity:1; transform:scale(1); } 50%{ opacity:0.5; transform:scale(0.8); } }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--accent2); border-radius: 2px; }
+
+  /* ── SCANLINE EFFECT (subtle) ── */
+  body::after {
+    content:''; position:fixed; inset:0; z-index:999; pointer-events:none;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.015) 2px, rgba(0,0,0,0.015) 4px);
+  }
+</style>
+</head>
+<body>
+
+<!-- BACKGROUNDS -->
+<div class="stars-bg"></div>
+<div class="grid-overlay"></div>
+<canvas id="aurora-canvas" style="position:fixed;inset:0;z-index:0;pointer-events:none;width:100%;height:100%;"></canvas>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">MGKV-Portfolio.py</div>
+  <ul class="nav-links">
+    <li><a href="#about">./about</a></li>
+    <li><a href="#skills">./skills</a></li>
+    <li><a href="#education">./education</a></li>
+    <li><a href="#internships">./internships</a></li>
+    <li><a href="#projects">./projects</a></li>
+    <li><a href="#certifications">./certs</a></li>
+    <li><a href="#future">./future</a></li>
+    <li><a href="#blog">./blog</a></li>
+    <li><a href="#contact" class="nav-cta">./contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div style="position:relative;z-index:1;">
+<section id="hero">
+  <div class="hero-tag">PYTHON DEVELOPER</div>
+  <h1 class="hero-name">Geetha<br><span>Krishna Venkatesh</span><br>Maroju.</h1>
+  <p class="hero-title">
+    &gt; Specializing in <span class="typed-text" id="typed"></span><span class="cursor-blink"></span>
+  </p>
+  <p class="hero-title" style="margin-bottom:1.75rem;">
+    &gt; Interested in <span class="typed-text" id="typed2" style="color:#f59e0b; text-shadow: 0 0 12px rgba(245,158,11,0.6);"></span><span class="cursor-blink" style="background:#f59e0b;"></span>
+  </p>
+  <p class="hero-bio">
+    Python Developer with hands-on experience building backend applications, REST APIs, and cloud-native solutions on <strong>Microsoft Azure</strong>. Skilled in FastAPI, Flask, and Python automation. Passionate about building <strong>scalable, AI-integrated applications</strong>. Based in Hyderabad, India.
+  </p>
+  <div class="hero-actions">
+    <a href="resume.pdf" download="Geetha_Krishna_Venkatesh_Maroju_Resume.pdf" class="btn-primary">⬇ DOWNLOAD CV</a>
+    <a href="#projects" class="btn-secondary">VIEW PROJECTS</a>
+    <a href="#contact" class="btn-secondary">GET IN TOUCH</a>
+    
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num">10+</div>
+      <div class="stat-label">PROJECTS BUILT</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">15+</div>
+      <div class="stat-label">CERTIFICATIONS</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">20+</div>
+      <div class="stat-label">TECHNOLOGIES</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">1.5+</div>
+      <div class="stat-label">YEARS CODING</div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header fade-up">
+    <div class="section-tag">01 ABOUT_ME</div>
+    <h2 class="section-title">Who Am I?</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="about-grid">
+    <div class="about-text fade-up">
+      <p>Hello! I'm <strong>Geetha Krishna Venkatesh Maroju</strong>, a Python Developer based in Hyderabad, India. I build backend applications, REST APIs, and cloud-native solutions on <strong>Microsoft Azure</strong>.</p>
+      <p>I completed my B.Tech in Computer Science from JNTUK Kakinada and additionally completed international coursework in <strong>AI & Data Science</strong> at Blekinge Institute of Technology, Sweden. I've interned at 4 companies across Python, Data Analytics, and Machine Learning domains.</p>
+      <p>When I'm not coding, you'll find me <strong>playing games, learning through YouTube & Google</strong>, and exploring the latest in AI and cloud technologies.</p>
+      <div class="code-card fade-up" style="margin-bottom:1.75rem;">
+  <div class="code-card-title">⌨️ DAILY CODING PRACTICE</div>
+  <a href="https://github.com/MGK-VENKATESH/Leetcode-Python" target="_blank" class="code-repo">
+    <div class="code-repo-left">
+      <div class="code-repo-icon py"><i class="devicon-python-plain skill-cat-icon"></i></div>
+      <div>
+        <div class="code-repo-name">Leetcode-Python</div>
+        <div class="code-repo-desc">Daily Python problem solving — DSA, algorithms & patterns</div>
+      </div>
+    </div>
+    <div class="code-repo-arrow">→</div>
+  </a>
+  <a href="https://github.com/MGK-VENKATESH/Leetcode-SQL" target="_blank" class="code-repo">
+    <div class="code-repo-left">
+      <div class="code-repo-icon sql"><i class="devicon-mysql-plain skill-cat-icon"></i></div>
+      <div>
+        <div class="code-repo-name">Leetcode-SQL</div>
+        <div class="code-repo-desc">Daily SQL query challenges — joins, aggregations & more</div>
+      </div>
+    </div>
+    <div class="code-repo-arrow">→</div>
+  </a>
+  <div class="code-daily-badge">
+    <span class="daily-dot"></span> UPDATED DAILY ON GITHUB
+  </div>
+</div>
+      <div class="about-interests">
+        <div class="interests-label">// INTERESTS & HOBBIES</div>
+        <div class="interest-tags">
+          <span class="tag"><i class="devicon-tensorflow-original skill-cat-icon"></i> Machine Learning</span>
+          <span class="tag"><i class="devicon-azure-plain skill-cat-icon"></i> Azure Cloud</span>
+          <span class="tag">🌐 REST APIs</span>
+          <span class="tag">🎮 Gaming</span>
+          <span class="tag">▶️ YouTube Learning</span>
+          <span class="tag"><i class="devicon-opencv-plain skill-cat-icon"></i> Computer Vision</span>
+          <span class="tag"><i class="devicon-tensorflow-original skill-cat-icon"></i> AI/LLMs</span>
+          <span class="tag">📊 Data Science</span>
+          <!-- Add more interests here -->
+        </div>
+      </div>
+    </div>
+    <div class="about-terminal fade-up" id="termWrap" style="overflow:hidden;">
+      <canvas id="bgCanvas" style="position:absolute;inset:0;pointer-events:none;z-index:0;width:100%;height:100%;"></canvas>
+      <div style="position:absolute;inset:0;z-index:1;pointer-events:none;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.018) 2px,rgba(0,0,0,0.018) 4px);"></div>
+      <div class="terminal-header" style="position:relative;z-index:2;">
+        <div class="t-dot r"></div>
+        <div class="t-dot y"></div>
+        <div class="t-dot g"></div>
+        <span class="terminal-title">about_me.py — python3</span>
+      </div>
+      <div class="terminal-body" style="position:relative;z-index:2;">
+        <div class="t-line"><span class="t-prompt">$</span><span class="t-cmd">python3 about_me.py</span></div>
+        <br>
+        <div class="t-line"><span class="t-key">name</span><span class="t-prompt"> = </span><span class="t-val">"Geetha Krishna Venkatesh Maroju"</span></div>
+        <div class="t-line"><span class="t-key">role</span><span class="t-prompt"> = </span><span class="t-val">"Python Developer"</span></div>
+        <div class="t-line"><span class="t-key">location</span><span class="t-prompt"> = </span><span class="t-val">"Hyderabad, IN"</span></div>
+        <div class="t-line"><span class="t-key">education</span><span class="t-prompt"> = </span><span class="t-val">"B.Tech - Computer Science and Engineering"</span></div>
+        <div class="t-line"><span class="t-key">experience</span><span class="t-prompt"> = </span><span class="t-val">"0-2 years"</span></div>
+        <div class="t-line"><span class="t-key">Internships Done</span><span class="t-prompt"> = </span><span class="t-val">"4"</span></div>
+        <br>
+        <div class="t-line"><span class="t-key">skills</span><span class="t-prompt"> = </span><span class="t-cmd">[</span></div>
+        <div class="t-output"><span class="t-val">"Python"</span>, <span class="t-val">"FastAPI"</span>, <span class="t-val">"Flask"</span>,</div>
+        <div class="t-output"><span class="t-val">"Azure"</span>, <span class="t-val">"ML/AI"</span>, <span class="t-val">"OpenCV"</span>,</div>
+        <div class="t-output"><span class="t-val">"SQL"</span>, <span class="t-val">"Git"</span>, <span class="t-val">"Streamlit"</span></div>
+        <div class="t-line"><span class="t-cmd">]</span></div>
+        <br>
+        <div class="t-line"><span class="t-key">available</span><span class="t-prompt"> = </span><span class="t-val" style="color:#10b981">True</span></div>
+        <div class="t-line"><span class="t-output">✓ Open to work!<span class="cursor-blink"></span></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header fade-up">
+    <div class="section-tag">02 SKILLS</div>
+    <h2 class="section-title">Tech Stack</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="skills-grid">
+
+  <div class="skill-category fade-up">
+    <div class="skill-cat-title"><i class="devicon-python-plain skill-cat-icon"></i> CORE PYTHON</div>
+    <div class="skill-items">
+      <div class="skill-item">
+        <div class="skill-info"><span class="skill-name">Python (OOP, DSA)</span><span class="skill-pct">90%</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="90"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-info"><span class="skill-name">FastAPI</span><span class="skill-pct">80%</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="80"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-info"><span class="skill-name">Flask</span><span class="skill-pct">80%</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="80"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-info"><span class="skill-name">REST APIs</span><span class="skill-pct">85%</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-info"><span class="skill-name">Automation & Scripting</span><span class="skill-pct">80%</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="80"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="skill-category fade-up">
+    <div class="skill-cat-title"><span class="skill-cat-icon"><i class="devicon-azure-plain skill-cat-icon"></i></span> AZURE CLOUD</div>
+    <div class="skill-items">
+      <div class="skill-item">
+        <div class="skill-info"><span class="skill-name">Azure App Service</span><span class="skill-pct">75%</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="75"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-info"><span class="skill-name">Azure Cosmos DB</span><span class="skill-pct">70%</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="70"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-info"><span class="skill-name">Azure Blob Storage</span><span class="skill-pct">70%</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="70"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-info"><span class="skill-name">Azure OpenAI</span><span class="skill-pct">65%</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="65"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-info"><span class="skill-name">Azure Functions</span><span class="skill-pct">60%</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="60"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="skill-category fade-up">
+    <div class="skill-cat-title"><span class="skill-cat-icon"><i class="devicon-tensorflow-original skill-cat-icon"></i></span> ML & DATA SCIENCE</div>
+    <div class="skill-items">
+      <div class="skill-item">
+        <div class="skill-info"><span class="skill-name">NumPy / Pandas</span><span class="skill-pct">85%</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-info"><span class="skill-name">Scikit-learn</span><span class="skill-pct">75%</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="75"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-info"><span class="skill-name">Streamlit</span><span class="skill-pct">75%</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="75"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-info"><span class="skill-name">Matplotlib / Seaborn</span><span class="skill-pct">75%</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="75"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-info"><span class="skill-name">SHAP / LIME (Explainability)</span><span class="skill-pct">65%</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="65"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="skill-category fade-up">
+    <div class="skill-cat-title"><span class="skill-cat-icon"><i class="devicon-keras-plain skill-cat-icon"></i></span> DEEP LEARNING & NLP</div>
+    <div class="skill-items">
+      <div class="skill-item">
+        <div class="skill-info"><span class="skill-name">TensorFlow / Keras</span><span class="skill-pct">65%</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="65"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-info"><span class="skill-name">BERT / LSTM / GRU</span><span class="skill-pct">60%</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="60"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-info"><span class="skill-name">NLP & TF-IDF</span><span class="skill-pct">65%</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="65"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-info"><span class="skill-name">CapsNet (Capsule Networks)</span><span class="skill-pct">55%</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="55"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="skill-category fade-up">
+    <div class="skill-cat-title"><span class="skill-cat-icon"><i class="devicon-opencv-plain skill-cat-icon"></i></span> COMPUTER VISION</div>
+    <div class="skill-items">
+      <div class="skill-item">
+        <div class="skill-info"><span class="skill-name">OpenCV</span><span class="skill-pct">75%</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="75"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-info"><span class="skill-name">MediaPipe</span><span class="skill-pct">70%</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="70"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-info"><span class="skill-name">Image Classification</span><span class="skill-pct">60%</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="60"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="skill-category fade-up">
+    <div class="skill-cat-title"><span class="skill-cat-icon"><i class="devicon-mysql-plain skill-cat-icon"></i></span> DATABASES</div>
+    <div class="skill-items">
+      <div class="skill-item">
+        <div class="skill-info"><span class="skill-name">SQL / MySQL</span><span class="skill-pct">80%</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="80"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-info"><span class="skill-name">Azure Cosmos DB</span><span class="skill-pct">70%</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="70"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-info"><span class="skill-name">SQLite</span><span class="skill-pct">70%</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="70"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="skill-category fade-up">
+    <div class="skill-cat-title"><span class="skill-cat-icon"><i class="devicon-github-original skill-cat-icon"></i></span> AI & DEPLOYMENT</div>
+    <div class="skill-items">
+      <div class="skill-item">
+        <div class="skill-info"><span class="skill-name">Groq API / Whisper</span><span class="skill-pct">65%</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="65"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-info"><span class="skill-name">HuggingFace</span><span class="skill-pct">60%</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="60"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-info"><span class="skill-name">AssemblyAI</span><span class="skill-pct">60%</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="60"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-info"><span class="skill-name">GitHub Pages</span><span class="skill-pct">75%</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="75"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="skill-category fade-up">
+    <div class="skill-cat-title"><span class="skill-cat-icon"><i class="devicon-vscode-plain skill-cat-icon"></i></span> TOOLS & PLATFORMS</div>
+    <div class="skill-items">
+      <div class="skill-item">
+        <div class="skill-info"><span class="skill-name">Git / GitHub</span><span class="skill-pct">85%</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-info"><span class="skill-name">VS Code / Postman</span><span class="skill-pct">85%</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-info"><span class="skill-name">Jupyter Notebook</span><span class="skill-pct">80%</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="80"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-info"><span class="skill-name">Linux / Bash</span><span class="skill-pct">65%</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="65"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-info"><span class="skill-name">Flutter / Dart</span><span class="skill-pct">45%</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="45"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="skill-category fade-up">
+    <div class="skill-cat-title"><span class="skill-cat-icon">➕</span> OTHER SKILLS</div>
+    <div class="skill-items">
+      <div class="skill-item">
+        <div class="skill-info"><span class="skill-name">C / C++</span><span class="skill-pct">60%</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="60"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-info"><span class="skill-name">Java</span><span class="skill-pct">55%</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="55"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-info"><span class="skill-name">R Language</span><span class="skill-pct">50%</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="50"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-info"><span class="skill-name">AWS (Lambda, S3)</span><span class="skill-pct">55%</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="55"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-info"><span class="skill-name">Pandas / NumPy</span><span class="skill-pct">85%</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-info"><span class="skill-name">LangChain</span><span class="skill-pct">40%</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="40"></div></div>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>
+
+
+
+</section>
+
+<!-- EDUCATION -->
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-header fade-up">
+    <div class="section-tag">03 EDUCATION</div>
+    <h2 class="section-title">Academic Journey</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="edu-timeline">
+
+  <div class="edu-item fade-up">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+      <div style="flex:1;">
+        <div class="edu-year">2021 — 2025</div>
+        <div class="edu-degree">B.Tech — Computer Science & Engineering</div>
+        <div class="edu-inst">Jawaharlal Nehru Technological University, Kakinada</div>
+        <div class="edu-desc">Four-year undergraduate program in Computer Science. Core focus on programming, algorithms, databases, and software engineering. Graduated in 2025.</div>
+      </div>
+      <img src="jntuk.png" alt="JNTUK" style="
+        width: 64px; height: 64px;
+        object-fit: contain;
+        border-radius: 8px;
+        background: rgba(255,255,255,0.05);
+        padding: 6px;
+        margin-left: 1rem;
+        flex-shrink: 0;
+        border: 1px solid var(--border);
+      "/>
+    </div>
+  </div>
+
+  <div class="edu-item fade-up">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+      <div style="flex:1;">
+        <div class="edu-year">2024 — 2025</div>
+        <div class="edu-degree">International Coursework — AI & Data Science</div>
+        <div class="edu-inst">Blekinge Institute of Technology, Sweden</div>
+        <div class="edu-desc">Completed advanced coursework in Artificial Intelligence and Data Science with international exposure — a unique global academic experience alongside B.Tech.</div>
+      </div>
+      <img src="bth.png" alt="BTH Sweden" style="
+        width: 64px; height: 64px;
+        object-fit: contain;
+        border-radius: 8px;
+        background: rgba(255,255,255,0.05);
+        padding: 6px;
+        margin-left: 1rem;
+        flex-shrink: 0;
+        border: 1px solid var(--border);
+      "/>
+    </div>
+  </div>
+
+</div>
+</section>
+<!-- INTERNSHIPS -->
+<section id="internships">
+  <div class="section-header fade-up">
+    <div class="section-tag">04 INTERNSHIPS</div>
+    <h2 class="section-title">Work Experience</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="intern-list">
+
+    <!-- INTERNSHIP 1 — CURRENT -->
+    <div class="intern-card fade-up">
+      <div class="intern-top">
+        <div class="intern-left">
+          <div class="intern-role">Python Developer Intern</div>
+          <div class="intern-company">Tarcin Robotics</div>
+        </div>
+        <div class="intern-right">
+          <div class="intern-duration">AUG 2025 — PRESENT</div>
+          <span class="intern-badge current">● CURRENT</span>
+          <span class="intern-badge remote">REMOTE</span>
+        </div>
+      </div>
+      <div class="intern-divider"></div>
+      <div class="intern-points">
+        <div class="intern-point">Built automated Python data pipelines processing structured datasets using Pandas and NumPy, reducing manual effort significantly.</div>
+        <div class="intern-point">Developed backend logic for dashboards and data-driven applications using modular, Git-managed Python code.</div>
+        <div class="intern-point">Add your own description of what you worked on here — replace this line.</div>
+      </div>
+      <div class="intern-tags">
+        <span class="intern-tag">Python</span>
+        <span class="intern-tag">Pandas</span>
+        <span class="intern-tag">NumPy</span>
+        <span class="intern-tag">Git</span>
+        <span class="intern-tag">Data Pipelines</span>
+      </div>
+    </div>
+
+    <!-- INTERNSHIP 2 -->
+    <div class="intern-card fade-up">
+      <div class="intern-top">
+        <div class="intern-left">
+          <div class="intern-role">Python / Data Analytics Intern</div>
+          <div class="intern-company">AICTE Recognized Organization</div>
+        </div>
+        <div class="intern-right">
+          <div class="intern-duration">JUL 2024 — DEC 2024</div>
+          <span class="intern-badge remote">REMOTE</span>
+        </div>
+      </div>
+      <div class="intern-divider"></div>
+      <div class="intern-points">
+        <div class="intern-point">Developed Python programs for data extraction and analysis using SQL datasets, implementing reusable functions and clean code practices.</div>
+        <div class="intern-point">Add your own description of what you worked on here — replace this line.</div>
+        <div class="intern-point">Add your own description of what you worked on here — replace this line.</div>
+      </div>
+      <div class="intern-tags">
+        <span class="intern-tag">Python</span>
+        <span class="intern-tag">SQL</span>
+        <span class="intern-tag">Data Analytics</span>
+        <span class="intern-tag">Clean Code</span>
+      </div>
+    </div>
+
+    <!-- INTERNSHIP 3 -->
+    <div class="intern-card fade-up">
+      <div class="intern-top">
+        <div class="intern-left">
+          <div class="intern-role">Python & Machine Learning Intern</div>
+          <div class="intern-company">YBI Foundation</div>
+        </div>
+        <div class="intern-right">
+          <div class="intern-duration">MAR 2024 — JUL 2024</div>
+          <span class="intern-badge remote">REMOTE</span>
+        </div>
+      </div>
+      <div class="intern-divider"></div>
+      <div class="intern-points">
+        <div class="intern-point">Implemented machine learning algorithms using Python and Scikit-learn, following object-oriented programming principles.</div>
+        <div class="intern-point">Built Python pipelines for model training, testing, evaluation, and integration into applications.</div>
+        <div class="intern-point">Add your own description of what you worked on here — replace this line.</div>
+      </div>
+      <div class="intern-tags">
+        <span class="intern-tag">Python</span>
+        <span class="intern-tag">Scikit-learn</span>
+        <span class="intern-tag">Machine Learning</span>
+        <span class="intern-tag">OOP</span>
+        <span class="intern-tag">ML Pipelines</span>
+      </div>
+    </div>
+    <!-- INTERNSHIP 4 -->
+    <div class="intern-card fade-up">
+      <div class="intern-top">
+        <div class="intern-left">
+          <div class="intern-role">Cloud Computing Intern</div>
+          <div class="intern-company">HDLC Info Technologies</div>
+        </div>
+        <div class="intern-right">
+          <div class="intern-duration">APR 2023 — JUN 2023</div>
+          <span class="intern-badge remote">Hyderabad</span>
+        </div>
+      </div>
+      <div class="intern-divider"></div>
+      <div class="intern-points">
+        <div class="intern-point">Worked with AWS Lambda and Amazon Web Services for cloud-based application development and deployment.</div>
+        <div class="intern-point">Replace this with your own description of what you built or learned here.</div>
+        <div class="intern-point">Replace this with your own description of what you built or learned here.</div>
+      </div>
+      <div class="intern-tags">
+        <span class="intern-tag">AWS Lambda</span>
+        <span class="intern-tag">Amazon Web Services</span>
+        <span class="intern-tag">Cloud Computing</span>
+        <span class="intern-tag">Python</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header fade-up">
+    <div class="section-tag">05 PROJECTS</div>
+    <h2 class="section-title">What I've Built</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="filter-bar fade-up">
+    
+    <button class="filter-btn" data-filter="ml"><i class="devicon-tensorflow-original skill-cat-icon"></i> Machine Learning & AI</button>
+    <button class="filter-btn" data-filter="azure"><i class="devicon-azure-plain skill-cat-icon"></i> Azure & Cloud</button>
+    <button class="filter-btn" data-filter="data">📊 Data Science & EDA</button>
+    <button class="filter-btn" data-filter="web"><i class="devicon-flask-original"></i> Web & Apps</button>
+    <button class="filter-btn" data-filter="all">⚡ All Projects</button>
+  </div>
+
+  <div class="projects-grid">
+
+    <!-- PROJECT 1 — AI RESUME SCREENER API -->
+  <div class="project-card fade-up" data-category="azure ml python">
+    <div class="project-top">
+      <div class="project-icon"><i class="devicon-tensorflow-original skill-cat-icon"></i></div>
+      <div class="project-links">
+        <a href="https://github.com/MGK-VENKATESH/AI-Resume-Screener" class="project-link" target="_blank">GitHub</a>
+      </div>
+    </div>
+    <div class="project-name">AI Resume Screener API</div>
+    <div class="project-desc">REST API built with FastAPI and Azure OpenAI that analyses resumes against job descriptions, returning match scores and skill gap analysis. Deployed on Azure App Service with resume files stored in Azure Blob Storage.</div>
+    <div class="project-stack">
+      <span class="stack-tag">FastAPI</span>
+      <span class="stack-tag">Azure OpenAI</span>
+      <span class="stack-tag">Azure Blob Storage</span>
+      <span class="stack-tag">Python</span>
+      <span class="stack-tag">REST API</span>
+    </div>
+  </div>
+ <!-- PROJECT 2 — WEATHER APP -->
+  <div class="project-card fade-up" data-category="azure web">
+    <div class="project-top">
+      <div class="project-icon">🌤️</div>
+      <div class="project-links">
+        <a href="http://weather-azure-app-mgk.azurewebsites.net" class="project-link" target="_blank">Live</a>
+        <a href="https://github.com/MGK-VENKATESH/weather-azure-app" class="project-link" target="_blank">GitHub</a>
+      </div>
+    </div>
+    <div class="project-name">Weather App</div>
+    <div class="project-desc">Flask web app fetching live weather data via REST API, storing search history in Azure Cosmos DB. Deployed on Azure App Service with sub-200ms API response time.</div>
+    <div class="project-stack">
+      <span class="stack-tag">Python</span>
+      <span class="stack-tag">Flask</span>
+      <span class="stack-tag">Azure Cosmos DB</span>
+      <span class="stack-tag">Azure App Service</span>
+      <span class="stack-tag">REST API</span>
+    </div>
+  </div>
+
+  <!-- PROJECT 3 — FAKE NEWS DETECTION -->
+  <div class="project-card fade-up" data-category="ml">
+    <div class="project-top">
+      <div class="project-icon">📰</div>
+      <div class="project-links">
+        <a href="https://github.com/MGK-VENKATESH/Bachelors-Thesis" class="project-link" target="_blank">GitHub</a>
+      </div>
+    </div>
+    <div class="project-name">Fake News Detection</div>
+    <div class="project-desc">NLP text classification app using BERT, LSTM and GRU models with SHAP/LIME explainability, achieving 92% classification accuracy. Features a modular preprocessing pipeline.</div>
+    <div class="project-stack">
+      <span class="stack-tag">Python</span>
+      <span class="stack-tag">TensorFlow</span>
+      <span class="stack-tag">BERT</span>
+      <span class="stack-tag">LSTM</span>
+      <span class="stack-tag">NLP</span>
+      <span class="stack-tag">SHAP</span>
+    </div>
+  </div>
+
+ <!-- PROJECT 4 — TOUCHLESS VIRTUAL MOUSE -->
+  <div class="project-card fade-up" data-category="ml">
+    <div class="project-top">
+      <div class="project-icon">🖱️</div>
+      <div class="project-links">
+        <a href="https://github.com/MGK-VENKATESH/Virtual-Mouse" class="project-link" target="_blank">GitHub</a>
+      </div>
+    </div>
+    <div class="project-name">Touchless Virtual Mouse</div>
+    <div class="project-desc">Gesture-controlled virtual mouse using Python and computer vision pipelines with OpenCV and MediaPipe. Implements real-time hand gesture detection with smooth cursor control and optimized frame processing.</div>
+    <div class="project-stack">
+      <span class="stack-tag">Python</span>
+      <span class="stack-tag">OpenCV</span>
+      <span class="stack-tag">MediaPipe</span>
+    </div>
+  </div>
+
+  <!-- PROJECT 5 — MEETING SUMMARIZER -->
+    <div class="project-card fade-up" data-category="ml web">
+      <div class="project-top">
+        <div class="project-icon">🎙️</div>
+        <div class="project-links">
+          <a href="https://github.com/MGK-VENKATESH/Meeting-Summarizer-Web-App" class="project-link" target="_blank">GitHub</a>
+        </div>
+      </div>
+      <div class="project-name">Meeting Summarizer App</div>
+      <div class="project-desc">Streamlit app that generates structured summaries from meeting recordings. Supports video, audio, and text transcripts with multiple AI providers for transcription and summarization. Fully free setup possible using Groq.</div>
+      <div class="project-stack">
+        <span class="stack-tag">Python</span>
+        <span class="stack-tag">Streamlit</span>
+        <span class="stack-tag">Groq Whisper</span>
+        <span class="stack-tag">AssemblyAI</span>
+        <span class="stack-tag">HuggingFace</span>
+        <span class="stack-tag">moviepy</span>
+      </div>
+    </div>
+    <!-- PROJECT 6 — DAILY PROGRESS CALCULATOR -->
+    <div class="project-card fade-up" data-category="web">
+      <div class="project-top">
+        <div class="project-icon">📅</div>
+        <div class="project-links">
+          <a href="https://mgk-venkatesh.github.io/progress-calendar/" class="project-link" target="_blank">Live</a>
+          <a href="https://github.com/MGK-VENKATESH/progress-calendar" class="project-link" target="_blank">GitHub</a>
+        </div>
+      </div>
+      <div class="project-name">Daily Progress Calendar</div>
+      <div class="project-desc">A personal productivity app to track and visualize daily progress. Hosted on GitHub Pages — helping you stay consistent and accountable with your goals every day.</div>
+      <div class="project-stack">
+        <span class="stack-tag">HTML</span>
+        <span class="stack-tag">CSS</span>
+        <span class="stack-tag">JavaScript</span>
+        <span class="stack-tag">GitHub Pages</span>
+      </div>
+    </div>
+    <!-- PROJECT 7 — CREDIT CARD APPROVAL -->
+    <div class="project-card fade-up" data-category="ml data">
+      <div class="project-top">
+        <div class="project-icon">💳</div>
+        <div class="project-links">
+          <a href="https://github.com/MGK-VENKATESH/Credit-card-approval-prediction" class="project-link" target="_blank">GitHub</a>
+        </div>
+      </div>
+      <div class="project-name">Credit Card Approval Predictor</div>
+      <div class="project-desc">ML-powered web app that predicts credit card approval based on applicant's demographic and financial data. Random Forest Classifier trained on real-world-style Kaggle dataset achieving ~89% accuracy. Features confidence scores and key influencing factors.</div>
+      <div class="project-stack">
+        <span class="stack-tag">Python</span>
+        <span class="stack-tag">Scikit-learn</span>
+        <span class="stack-tag">Streamlit</span>
+        <span class="stack-tag">Random Forest</span>
+        <span class="stack-tag">Pandas</span>
+        <span class="stack-tag">Pickle</span>
+      </div>
+    </div>
+
+    <!-- PROJECT 8 — TRAVEL JOURNAL -->
+    <div class="project-card fade-up" data-category="web">
+      <div class="project-top">
+        <div class="project-icon">✈️</div>
+        <div class="project-links">
+          <a href="https://github.com/MGK-VENKATESH/Travel_Journal" class="project-link" target="_blank">GitHub</a>
+        </div>
+      </div>
+      <div class="project-name">Travel Journal App</div>
+      <div class="project-desc">A mobile application built with Flutter to document and manage travel experiences. Log destinations, memories, and journeys in a clean and intuitive interface.</div>
+      <div class="project-stack">
+        <span class="stack-tag">Flutter</span>
+        <span class="stack-tag">Dart</span>
+        <span class="stack-tag">Mobile App</span>
+      </div>
+    </div>
+
+    <!-- PROJECT 9 — WEATHER STATE TRANSITION -->
+    <div class="project-card fade-up" data-category="ml data">
+      <div class="project-top">
+        <div class="project-icon">🌦️</div>
+        <div class="project-links">
+          <a href="https://github.com/MGK-VENKATESH/Weather-State-Transition-Simulation" class="project-link" target="_blank">GitHub</a>
+        </div>
+      </div>
+      <div class="project-name">Weather State Transition Simulation</div>
+      <div class="project-desc">A Python-based simulation modelling weather state transitions using probabilistic methods. Demonstrates how weather patterns shift between states over time using Markov Chain concepts.</div>
+      <div class="project-stack">
+        <span class="stack-tag">Python</span>
+        <span class="stack-tag">Markov Chains</span>
+        <span class="stack-tag">Probability</span>
+        <span class="stack-tag">Simulation</span>
+        <span class="stack-tag">NumPy</span>
+      </div>
+    </div>
+
+    <!-- PROJECT 10 — COVID-19 SPREAD SIMULATION -->
+    <div class="project-card fade-up" data-category="data">
+      <div class="project-top">
+        <div class="project-icon">🦠</div>
+        <div class="project-links">
+          <a href="https://github.com/MGK-VENKATESH/COVID-19-Spread-Simulation-Application" class="project-link" target="_blank">GitHub</a>
+        </div>
+      </div>
+      <div class="project-name">COVID-19 Spread Simulation</div>
+      <div class="project-desc">A Python simulation application modelling the spread of COVID-19 across countries using time-series data. Features a Streamlit UI for visualization, simulation parameters, and summary analytics with real country datasets.</div>
+      <div class="project-stack">
+        <span class="stack-tag">Python</span>
+        <span class="stack-tag">Streamlit</span>
+        <span class="stack-tag">Simulation</span>
+        <span class="stack-tag">Time-Series</span>
+        <span class="stack-tag">Pandas</span>
+        <span class="stack-tag">Matplotlib</span>
+      </div>
+    </div>
+
+    <!-- PROJECT 11 — FAKE NEWS DETECTION NLP -->
+    <div class="project-card fade-up" data-category="ml data">
+      <div class="project-top">
+        <div class="project-icon">📰</div>
+        <div class="project-links">
+          <a href="https://github.com/MGK-VENKATESH/Fake-News-Detection" class="project-link" target="_blank">GitHub</a>
+        </div>
+      </div>
+      <div class="project-name">Fake News Detection — NLP</div>
+      <div class="project-desc">ML model detecting fake news using Multinomial Naive Bayes with TF-IDF features. Trained on 44,898 news articles achieving <strong style="color:var(--accent3)">98.67% accuracy</strong> with precision & recall both above 98% across fake and true classes.</div>
+      <div class="project-stack">
+        <span class="stack-tag">Python</span>
+        <span class="stack-tag">Scikit-learn</span>
+        <span class="stack-tag">NLP</span>
+        <span class="stack-tag">TF-IDF</span>
+        <span class="stack-tag">Naive Bayes</span>
+        <span class="stack-tag">NLTK</span>
+        <span class="stack-tag">Pandas</span>
+      </div>
+    </div>
+
+   <!-- PROJECT 12 — NETFLIX DATA ANALYSIS -->
+    <div class="project-card fade-up" data-category="data">
+      <div class="project-top">
+        <div class="project-icon">🎬</div>
+        <div class="project-links">
+          <a href="https://github.com/MGK-VENKATESH/COB" class="project-link" target="_blank">GitHub</a>
+        </div>
+      </div>
+      <div class="project-name">Netflix Data Analysis</div>
+      <div class="project-desc">Exploratory data analysis on Netflix dataset uncovering trends in content distribution, genres, release years, and regional availability. Visualizes patterns and insights from Netflix's content library using Python.</div>
+      <div class="project-stack">
+        <span class="stack-tag">Python</span>
+        <span class="stack-tag">Pandas</span>
+        <span class="stack-tag">Matplotlib</span>
+        <span class="stack-tag">Seaborn</span>
+        <span class="stack-tag">EDA</span>
+        <span class="stack-tag">Jupyter</span>
+      </div>
+    </div>
+
+    <!-- PROJECT 13 — BANK CHURN PREDICTION -->
+    <div class="project-card fade-up" data-category="ml data">
+      <div class="project-top">
+        <div class="project-icon">🏦</div>
+        <div class="project-links">
+          <a href="https://github.com/MGK-VENKATESH/PROJECTS-CLOUDCOMPUTING" class="project-link" target="_blank">GitHub</a>
+        </div>
+      </div>
+      <div class="project-name">Bank Customer Churn Prediction</div>
+      <div class="project-desc">ML model predicting customer churn for ABC Bank using 10,000 customer records across 14 features. Compared multiple ML approaches with 70/30 train-test split, feature engineering, and overfitting analysis to find the best performing model.</div>
+      <div class="project-stack">
+        <span class="stack-tag">Python</span>
+        <span class="stack-tag">Scikit-learn</span>
+        <span class="stack-tag">Feature Engineering</span>
+        <span class="stack-tag">Classification</span>
+        <span class="stack-tag">Pandas</span>
+        <span class="stack-tag">EDA</span>
+      </div>
+    </div>
+
+    <!-- PROJECT 14 — CAPSULE NETWORK IMAGE CLASSIFICATION -->
+    <div class="project-card fade-up" data-category="ml">
+      <div class="project-top">
+        <div class="project-icon">🛰️</div>
+        <div class="project-links">
+          <a href="https://github.com/MGK-VENKATESH/Python-Language/blob/main/Capsule%20Networks" class="project-link" target="_blank">GitHub</a>
+        </div>
+      </div>
+      <div class="project-name">Satellite Image Classification — CapsNet</div>
+      <div class="project-desc">Deep learning model using Capsule Networks (CapsNet) to classify satellite images into 4 categories — cloudy, desert, green area, and water. Trained on 5,631 images over 50 epochs with custom weighted margin loss achieving <strong style="color:var(--accent3)">63% test accuracy</strong>.</div>
+      <div class="project-stack">
+        <span class="stack-tag">Python</span>
+        <span class="stack-tag">TensorFlow</span>
+        <span class="stack-tag">Keras</span>
+        <span class="stack-tag">CapsNet</span>
+        <span class="stack-tag">Deep Learning</span>
+        <span class="stack-tag">Image Classification</span>
+        <span class="stack-tag">Scikit-learn</span>
+      </div>
+    </div>
+
+  </div><!-- closes projects-grid -->
+
+</section>
+
+<div style="
+  text-align:center;
+  padding: 0 3rem 4rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+">
+  <a href="https://github.com/MGK-VENKATESH?tab=repositories" target="_blank" style="
+    font-family:'Share Tech Mono', monospace;
+    font-size:0.85rem; letter-spacing:2px;
+    color: #00f5ff; text-decoration:none;
+    padding: 0.9rem 2.5rem;
+    border: 1px solid rgba(0,245,255,0.4);
+    border-radius: 2px;
+    background: rgba(0,245,255,0.06);
+    display: inline-flex; align-items: center; gap: 0.75rem;
+    transition: all 0.3s;
+  "
+  onmouseover="this.style.background='rgba(0,245,255,0.12)'; this.style.borderColor='#00f5ff'; this.style.boxShadow='0 0 24px rgba(0,245,255,0.35)'; this.style.transform='translateY(-2px)'"
+  onmouseout="this.style.background='rgba(0,245,255,0.06)'; this.style.borderColor='rgba(0,245,255,0.4)'; this.style.boxShadow='none'; this.style.transform='translateY(0)'"
+  >
+    <span style="color:#10b981; font-size:1rem;">>>&#62;</span>
+    <span style="color:#64748b;">import</span>
+    <span style="color:#00f5ff;">all_projects</span>
+    <span style="color:#64748b;">from</span>
+    <span style="color:#7c3aed;">"github"</span>
+    <span style="color:#10b981;">→</span>
+  </a>
+  <p style="
+    font-family:'Share Tech Mono', monospace;
+    font-size:0.72rem; color:#64748b;
+    margin-top:0.75rem; letter-spacing:1px;
+  "># View all my projects on GitHub</p>
+</div>
+
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-header fade-up">
+    <div class="section-tag">06 CERTIFICATIONS</div>
+    <h2 class="section-title">Credentials</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="cert-filter-bar fade-up">
+    <button class="cert-filter-btn" data-cert-filter="python"><i class="devicon-python-plain skill-cat-icon"></i> Python</button>
+    <button class="cert-filter-btn" data-cert-filter="sql"><i class="devicon-mysql-plain skill-cat-icon"></i> SQL</button>
+    <button class="cert-filter-btn" data-cert-filter="cloud"><i class="devicon-azure-plain skill-cat-icon"></i> Cloud & Azure</button>
+    <button class="cert-filter-btn" data-cert-filter="ml"><i class="devicon-tensorflow-original skill-cat-icon"></i> Machine Learning</button>
+    <button class="cert-filter-btn" data-cert-filter="data">📊 Data Science</button>
+    <button class="cert-filter-btn" data-cert-filter="forage">🏢 Virtual Experience</button>
+    <button class="cert-filter-btn" data-cert-filter="all">⚡ All Certifications</button>
+  </div>
+
+  <div class="certs-grid">
+
+    <!-- PCAP -->
+    <div class="cert-card fade-up" data-cert-category="python">
+      <div class="cert-badge"><i class="devicon-python-plain skill-cat-icon"></i></div>
+      <div style="flex:1;">
+        <div class="cert-name">PCAP — Certified Associate in Python Programming</div>
+        <div class="cert-issuer">CertifyCore Inc. · MISAC, California USA</div>
+        <div class="cert-year">2025 · Lifetime Validity</div>
+        <a href="https://drive.google.com/file/d/1Z1BGSGTikhAO4XcSxP5QUm6ccKdhPO2u/view?usp=sharing" target="_blank" class="cert-verify-btn">↗ Verify</a>
+      </div>
+    </div>
+
+    <!-- AZ-900 -->
+    <div class="cert-card fade-up" data-cert-category="cloud">
+      <div class="cert-badge"><i class="devicon-azure-plain skill-cat-icon"></i></div>
+      <div style="flex:1;">
+        <div class="cert-name">AZ-900 — Azure Fundamentals</div>
+        <div class="cert-issuer">Microsoft · Skill India Program</div>
+        <div class="cert-year">In Progress · 2026</div>
+      </div>
+    </div>
+
+    <!-- SOAR-AI -->
+    <div class="cert-card fade-up" data-cert-category="cloud">
+      <div class="cert-badge"><i class="devicon-tensorflow-original skill-cat-icon"></i></div>
+      <div style="flex:1;">
+        <div class="cert-name">Microsoft SOAR-AI — For Educators & Acquire</div>
+        <div class="cert-issuer">Microsoft · Skill India</div>
+        <div class="cert-year">Sept 2025</div>
+        <a href="https://drive.google.com/drive/folders/1i-0saikFvlK6xiD2Fr4gdUlBxgeY7p_L?usp=sharing" target="_blank" class="cert-verify-btn">↗ Verify</a>
+      </div>
+    </div>
+
+    <!-- FCC ML -->
+    <div class="cert-card fade-up" data-cert-category="ml python">
+      <div class="cert-badge">💻</div>
+      <div style="flex:1;">
+        <div class="cert-name">Machine Learning with Python</div>
+        <div class="cert-issuer">freeCodeCamp</div>
+        <div class="cert-year">2025</div>
+        <a href="https://www.freecodecamp.org/mgkvenkatesh3" target="_blank" class="cert-verify-btn">↗ Verify</a>
+      </div>
+    </div>
+
+    <!-- FCC DATA -->
+    <div class="cert-card fade-up" data-cert-category="data python">
+      <div class="cert-badge">📊</div>
+      <div style="flex:1;">
+        <div class="cert-name">Data Analysis with Python</div>
+        <div class="cert-issuer">freeCodeCamp</div>
+        <div class="cert-year">2023</div>
+        <a href="https://www.freecodecamp.org/mgkvenkatesh3" target="_blank" class="cert-verify-btn">↗ Verify</a>
+      </div>
+    </div>
+
+    <!-- FCC SCIENTIFIC -->
+    <div class="cert-card fade-up" data-cert-category="python data">
+      <div class="cert-badge">🔬</div>
+      <div style="flex:1;">
+        <div class="cert-name">Scientific Computing with Python</div>
+        <div class="cert-issuer">freeCodeCamp</div>
+        <div class="cert-year">2023</div>
+        <a href="https://www.freecodecamp.org/mgkvenkatesh3" target="_blank" class="cert-verify-btn">↗ Verify</a>
+      </div>
+    </div>
+
+    <!-- HACKERRANK PYTHON -->
+    <div class="cert-card fade-up" data-cert-category="python">
+      <div class="cert-badge">⭐</div>
+      <div style="flex:1;">
+        <div class="cert-name">HackerRank — Python (Basic)</div>
+        <div class="cert-issuer">HackerRank</div>
+        <div class="cert-year">2025</div>
+        <a href="https://www.hackerrank.com/profile/mgkvenkatesh3" target="_blank" class="cert-verify-btn">↗ Verify</a>
+      </div>
+    </div>
+
+    <!-- HACKERRANK SQL 1 -->
+    <div class="cert-card fade-up" data-cert-category="sql">
+      <div class="cert-badge"><i class="devicon-mysql-plain skill-cat-icon"></i></div>
+      <div style="flex:1;">
+        <div class="cert-name">HackerRank — SQL (Easy)</div>
+        <div class="cert-issuer">HackerRank</div>
+        <div class="cert-year">2023</div>
+        <a href="https://www.hackerrank.com/profile/mgkvenkatesh3" target="_blank" class="cert-verify-btn">↗ Verify</a>
+      </div>
+    </div>
+
+    <!-- HACKERRANK SQL 2 -->
+    <div class="cert-card fade-up" data-cert-category="sql">
+      <div class="cert-badge"><i class="devicon-mysql-plain skill-cat-icon"></i></div>
+      <div style="flex:1;">
+        <div class="cert-name">HackerRank — SQL (Medium)</div>
+        <div class="cert-issuer">HackerRank</div>
+        <div class="cert-year">2023</div>
+        <a href="https://www.hackerrank.com/profile/mgkvenkatesh3" target="_blank" class="cert-verify-btn">↗ Verify</a>
+      </div>
+    </div>
+
+    <!-- HACKERRANK SQL 3 -->
+    <div class="cert-card fade-up" data-cert-category="sql">
+      <div class="cert-badge"><i class="devicon-mysql-plain skill-cat-icon"></i></div>
+      <div style="flex:1;">
+        <div class="cert-name">HackerRank — SQL (Advanced)</div>
+        <div class="cert-issuer">HackerRank</div>
+        <div class="cert-year">2025</div>
+        <a href="https://www.hackerrank.com/profile/mgkvenkatesh3" target="_blank" class="cert-verify-btn">↗ Verify</a>
+      </div>
+    </div>
+
+    <!-- HACKERRANK DS 1 -->
+    <div class="cert-card fade-up" data-cert-category="data">
+      <div class="cert-badge">📈</div>
+      <div style="flex:1;">
+        <div class="cert-name">HackerRank — Data Structures (Basic)</div>
+        <div class="cert-issuer">HackerRank</div>
+        <div class="cert-year">2023</div>
+        <a href="https://www.hackerrank.com/profile/mgkvenkatesh3" target="_blank" class="cert-verify-btn">↗ Verify</a>
+      </div>
+    </div>
+
+    <!-- HACKERRANK DS 2 -->
+    <div class="cert-card fade-up" data-cert-category="data">
+      <div class="cert-badge">📈</div>
+      <div style="flex:1;">
+        <div class="cert-name">HackerRank — Data Structures (Intermediate)</div>
+        <div class="cert-issuer">HackerRank</div>
+        <div class="cert-year">2025</div>
+        <a href="https://www.hackerrank.com/profile/mgkvenkatesh3" target="_blank" class="cert-verify-btn">↗ Verify</a>
+      </div>
+    </div>
+
+    <!-- FORAGE -->
+    <div class="cert-card fade-up" data-cert-category="forage">
+      <div class="cert-badge">🏢</div>
+      <div style="flex:1;">
+        <div class="cert-name">Forage — Accenture · Data Analytics</div>
+        <div class="cert-issuer">Forage Virtual Experience</div>
+        <div class="cert-year">2023</div>
+        <a href="https://drive.google.com/drive/folders/1X0hVy9yBk1ne87aoULMaBvtD8zHjPH1S?usp=sharing" target="_blank" class="cert-verify-btn">↗ Verify</a>
+      </div>
+    </div>
+
+    <div class="cert-card fade-up" data-cert-category="forage">
+      <div class="cert-badge">🏢</div>
+      <div style="flex:1;">
+        <div class="cert-name">Forage — BCG · Data Science</div>
+        <div class="cert-issuer">Forage Virtual Experience</div>
+        <div class="cert-year">2023</div>
+        <a href="https://drive.google.com/drive/folders/1X0hVy9yBk1ne87aoULMaBvtD8zHjPH1S?usp=sharing" target="_blank" class="cert-verify-btn">↗ Verify</a>
+      </div>
+    </div>
+
+    <div class="cert-card fade-up" data-cert-category="forage">
+      <div class="cert-badge">🏢</div>
+      <div style="flex:1;">
+        <div class="cert-name">Forage — JPMorgan Chase · Software Engineering</div>
+        <div class="cert-issuer">Forage Virtual Experience</div>
+        <div class="cert-year">2023</div>
+        <a href="https://drive.google.com/drive/folders/1X0hVy9yBk1ne87aoULMaBvtD8zHjPH1S?usp=sharing" target="_blank" class="cert-verify-btn">↗ Verify</a>
+      </div>
+    </div>
+
+    <div class="cert-card fade-up" data-cert-category="forage">
+      <div class="cert-badge">🏢</div>
+      <div style="flex:1;">
+        <div class="cert-name">Forage — Cognizant · Artificial Intelligence</div>
+        <div class="cert-issuer">Forage Virtual Experience</div>
+        <div class="cert-year">2023</div>
+        <a href="https://drive.google.com/drive/folders/1X0hVy9yBk1ne87aoULMaBvtD8zHjPH1S?usp=sharing" target="_blank" class="cert-verify-btn">↗ Verify</a>
+      </div>
+    </div>
+
+    <div class="cert-card fade-up" data-cert-category="forage">
+      <div class="cert-badge">🏢</div>
+      <div style="flex:1;">
+        <div class="cert-name">Forage — KPMG · Data Analytics Consulting</div>
+        <div class="cert-issuer">Forage Virtual Experience</div>
+        <div class="cert-year">2023</div>
+        <a href="https://drive.google.com/drive/folders/1X0hVy9yBk1ne87aoULMaBvtD8zHjPH1S?usp=sharing" target="_blank" class="cert-verify-btn">↗ Verify</a>
+      </div>
+    </div>
+
+    <div class="cert-card fade-up" data-cert-category="forage">
+      <div class="cert-badge">🏢</div>
+      <div style="flex:1;">
+        <div class="cert-name">Forage — Tata · Data Visualisation</div>
+        <div class="cert-issuer">Forage Virtual Experience</div>
+        <div class="cert-year">2023</div>
+        <a href="https://drive.google.com/drive/folders/1X0hVy9yBk1ne87aoULMaBvtD8zHjPH1S?usp=sharing" target="_blank" class="cert-verify-btn">↗ Verify</a>
+      </div>
+    </div>
+
+    <div class="cert-card fade-up" data-cert-category="forage">
+      <div class="cert-badge">🏢</div>
+      <div style="flex:1;">
+        <div class="cert-name">Forage — British Airways · Data Science</div>
+        <div class="cert-issuer">Forage Virtual Experience</div>
+        <div class="cert-year">2023</div>
+        <a href="https://drive.google.com/drive/folders/1X0hVy9yBk1ne87aoULMaBvtD8zHjPH1S?usp=sharing" target="_blank" class="cert-verify-btn">↗ Verify</a>
+      </div>
+    </div>
+
+    <div class="cert-card fade-up" data-cert-category="forage">
+      <div class="cert-badge">🏢</div>
+      <div style="flex:1;">
+        <div class="cert-name">Forage — Quantium · Data Analytics</div>
+        <div class="cert-issuer">Forage Virtual Experience</div>
+        <div class="cert-year">2023</div>
+        <a href="https://drive.google.com/drive/folders/1X0hVy9yBk1ne87aoULMaBvtD8zHjPH1S?usp=sharing" target="_blank" class="cert-verify-btn">↗ Verify</a>
+      </div>
+    </div>
+
+    <!-- ADDITIONAL -->
+    <div class="cert-card fade-up" data-cert-category="ml data python">
+      <div class="cert-badge">📚</div>
+      <div style="flex:1;">
+        <div class="cert-name">Additional Course Certifications</div>
+        <div class="cert-issuer">Great Learning · LinkedIn Learning</div>
+        <div class="cert-year">Various · Multiple Courses</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+<!-- FUTURE PROJECTS -->
+<section id="future">
+  <div class="section-header fade-up">
+    <div class="section-tag">07 FUTURE_PROJECTS</div>
+    <h2 class="section-title">What's Coming</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="future-grid">
+
+    <!-- AZURE CHATBOT -->
+    <div class="future-card fade-up">
+      <div class="future-status planning-tag">@status("planning")</div>
+      <div class="future-title">Serverless AI Chatbot — Azure</div>
+      <div class="future-desc">Intelligent chatbot powered by Azure OpenAI and deployed as a serverless solution using Azure Functions. Real-time conversations with context memory via Cosmos DB and a clean web frontend.</div>
+    </div>
+
+    <!-- AZURE DOCUMENT INTELLIGENCE -->
+    <div class="future-card fade-up">
+      <div class="future-status planning-tag">@status("planning")</div>
+      <div class="future-title">Azure Document Intelligence Pipeline</div>
+      <div class="future-desc">End-to-end document processing pipeline using Azure Form Recognizer and Cognitive Services. Automatically extracts, classifies, and stores structured data from uploaded PDFs and scanned documents into Cosmos DB.</div>
+    </div>
+
+    <!-- AZURE REAL-TIME DASHBOARD -->
+    <div class="future-card fade-up">
+      <div class="future-status planning-tag">@status("planning")</div>
+      <div class="future-title">Real-Time Analytics Dashboard — Azure</div>
+      <div class="future-desc">Live data streaming dashboard using Azure Event Hubs and Azure Stream Analytics with a Python FastAPI backend. Visualizes real-time metrics with auto-scaling on Azure Container Apps.</div>
+    </div>
+
+    <!-- ADVANCED PYTHON — ASYNC MICROSERVICES -->
+    <div class="future-card fade-up">
+      <div class="future-status planning-tag">@status("planning")</div>
+      <div class="future-title">Async Microservices Architecture</div>
+      <div class="future-desc">Production-grade async Python microservices using FastAPI, Celery, and Redis for task queuing. Features JWT auth, rate limiting, Docker containerization, and full CI/CD pipeline via GitHub Actions.</div>
+    </div>
+
+    <!-- ADVANCED PYTHON — ML API PLATFORM -->
+    <div class="future-card fade-up">
+      <div class="future-status ideation-tag"># idea: in progress</div>
+      <div class="future-title">LLM-Powered Developer Assistant</div>
+      <div class="future-desc">A Python-based intelligent developer assistant using Large Language Models (LLMs) via LangChain and Azure OpenAI. Answers code questions, reviews pull requests, and suggests fixes — deployed as a FastAPI backend with a Streamlit frontend.</div>
+    </div>
+
+    <!-- ADVANCED PYTHON — AUTOMATION SUITE -->
+    <div class="future-card fade-up">
+      <div class="future-status ideation-tag"># idea: in progress</div>
+      <div class="future-title">Python Automation Suite — CLI Tool</div>
+      <div class="future-desc">A developer productivity CLI tool built with Python's Click framework. Automates repetitive dev tasks like project scaffolding, git workflows, environment setup, and deployment scripts, published as an open-source PyPI package.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- BLOG -->
+<!-- BLOG -->
+<section id="blog">
+  <div class="section-header fade-up">
+    <div class="section-tag">08 BLOG & RESEARCH</div>
+    <h2 class="section-title">Articles & Research</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="blog-list">
+
+    <!-- RESEARCH PAPER — FEATURED -->
+    <div class="blog-card fade-up" style="border-color: rgba(0,245,255,0.3); position:relative; overflow:hidden;">
+      <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(to right, var(--accent2), var(--accent));"></div>
+      <div>
+        <div class="blog-meta">
+          <span class="blog-cat" style="color:var(--accent); border:1px solid rgba(0,245,255,0.3); padding:0.2rem 0.6rem; border-radius:2px;">📄 RESEARCH PAPER</span>
+          <span class="blog-date">2025 · diva-portal.org</span>
+          <span style="font-family:'Share Tech Mono',monospace; font-size:0.68rem; color:var(--accent3); padding:0.2rem 0.6rem; border:1px solid rgba(16,185,129,0.3); border-radius:2px;">✓ PUBLISHED</span>
+        </div>
+        <div class="blog-title" style="font-size:1rem; margin-top:0.4rem;">Comparative Analysis of LSTM, GRU, and BERT Models for Fake News Detection</div>
+        <div class="blog-excerpt">Co-authored thesis evaluating and comparing three deep learning models — LSTM, GRU, and BERT — for fake news detection. Uses a labeled Kaggle dataset with comprehensive model benchmarking, performance analysis, and explainability insights. Published on diva-portal.org and indexed on Google Scholar.</div>
+        <div style="display:flex; gap:0.5rem; margin-top:0.75rem; flex-wrap:wrap;">
+          <span style="font-family:'Share Tech Mono',monospace; font-size:0.68rem; padding:0.2rem 0.55rem; background:rgba(124,58,237,0.1); border:1px solid rgba(124,58,237,0.25); border-radius:2px; color:var(--accent2);">BERT</span>
+          <span style="font-family:'Share Tech Mono',monospace; font-size:0.68rem; padding:0.2rem 0.55rem; background:rgba(124,58,237,0.1); border:1px solid rgba(124,58,237,0.25); border-radius:2px; color:var(--accent2);">LSTM</span>
+          <span style="font-family:'Share Tech Mono',monospace; font-size:0.68rem; padding:0.2rem 0.55rem; background:rgba(124,58,237,0.1); border:1px solid rgba(124,58,237,0.25); border-radius:2px; color:var(--accent2);">GRU</span>
+          <span style="font-family:'Share Tech Mono',monospace; font-size:0.68rem; padding:0.2rem 0.55rem; background:rgba(124,58,237,0.1); border:1px solid rgba(124,58,237,0.25); border-radius:2px; color:var(--accent2);">NLP</span>
+          <span style="font-family:'Share Tech Mono',monospace; font-size:0.68rem; padding:0.2rem 0.55rem; background:rgba(124,58,237,0.1); border:1px solid rgba(124,58,237,0.25); border-radius:2px; color:var(--accent2);">Deep Learning</span>
+        </div>
+      </div>
+      <a href="https://diva-portal.org" target="_blank" style="text-decoration:none;">
+        <div class="blog-arrow" style="display:flex; flex-direction:column; align-items:center; gap:0.3rem;">
+          <span>→</span>
+          <span style="font-family:'Share Tech Mono',monospace; font-size:0.6rem; color:var(--muted); white-space:nowrap;">READ PAPER</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="blog-card fade-up" style="border-color: rgba(0,245,255,0.3); position:relative; overflow:hidden;">
+      <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(to right, var(--accent2), var(--accent));"></div>
+      <div>
+        <div class="blog-meta">
+          <span class="blog-cat" style="color:var(--accent); border:1px solid rgba(0,245,255,0.3); padding:0.2rem 0.6rem; border-radius:2px;">📄 RESEARCH PAPER</span>
+          <span class="blog-date">2025 · GitHub</span>
+          <span style="font-family:'Share Tech Mono',monospace; font-size:0.68rem; color:var(--accent3); padding:0.2rem 0.6rem; border:1px solid rgba(16,185,129,0.3); border-radius:2px;">✓ PUBLISHED</span>
+        </div>
+        <div class="blog-title" style="font-size:1rem; margin-top:0.4rem;">Review on Comparative Analysis of CNN and Capsule Networks in Remote Sensing</div>
+        <div class="blog-excerpt">Research paper reviewing and comparing Convolutional Neural Networks (CNN) and Capsule Networks (CapsNets) for remote sensing image classification tasks. Directly connected to the satellite image classification project using CapsNet architecture.</div>
+        <div style="display:flex; gap:0.5rem; margin-top:0.75rem; flex-wrap:wrap;">
+        
+          <span style="font-family:'Share Tech Mono',monospace; font-size:0.68rem; padding:0.2rem 0.55rem; background:rgba(124,58,237,0.1); border:1px solid rgba(124,58,237,0.25); border-radius:2px; color:var(--accent2);">CNN</span>
+          <span style="font-family:'Share Tech Mono',monospace; font-size:0.68rem; padding:0.2rem 0.55rem; background:rgba(124,58,237,0.1); border:1px solid rgba(124,58,237,0.25); border-radius:2px; color:var(--accent2);">CapsNet</span>
+          <span style="font-family:'Share Tech Mono',monospace; font-size:0.68rem; padding:0.2rem 0.55rem; background:rgba(124,58,237,0.1); border:1px solid rgba(124,58,237,0.25); border-radius:2px; color:var(--accent2);">Remote Sensing</span>
+          <span style="font-family:'Share Tech Mono',monospace; font-size:0.68rem; padding:0.2rem 0.55rem; background:rgba(124,58,237,0.1); border:1px solid rgba(124,58,237,0.25); border-radius:2px; color:var(--accent2);">Deep Learning</span>
+          <span style="font-family:'Share Tech Mono',monospace; font-size:0.68rem; padding:0.2rem 0.55rem; background:rgba(124,58,237,0.1); border:1px solid rgba(124,58,237,0.25); border-radius:2px; color:var(--accent2);">Image Classification</span>
+        </div>
+      </div>
+      <a href="https://github.com/MGK-VENKATESH/CNN-and-CAPSNETS/blob/main/ET-Report-1.pdf" target="_blank" style="text-decoration:none;">
+        <div class="blog-arrow" style="display:flex; flex-direction:column; align-items:center; gap:0.3rem;">
+          <span>→</span>
+          <span style="font-family:'Share Tech Mono',monospace; font-size:0.6rem; color:var(--muted); white-space:nowrap;">READ PAPER</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- PLACEHOLDER FOR FUTURE ARTICLES -->
+    <div class="blog-card fade-up">
+      <div>
+        <div class="blog-meta">
+          <span class="blog-cat">COMING SOON</span>
+          <span class="blog-date">2025</span>
+        </div>
+        <div class="blog-title">More Articles Coming Soon</div>
+        <div class="blog-excerpt">Planning to write about Azure cloud development, Python backend patterns, and ML model deployment. Follow on GitHub to stay updated.</div>
+      </div>
+      
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header fade-up">
+    <div class="section-tag">09 CONTACT</div>
+    <h2 class="section-title">Get In Touch</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-info fade-up">
+      <h3>LET'S CONNECT</h3>
+      <p>I'm currently open to junior Python developer roles, internships, freelance projects, and open-source collaborations. Feel free to reach out if you'd like to work together or just say hello!</p>
+      <div class="contact-links">
+        <a href="mailto:mgkvenkatesh3@gmail.com" class="contact-link">
+          <span class="contact-link-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/>
+            </svg>
+          </span>Through mail
+        </a>
+        <a href="https://github.com/MGK-VENKATESH" class="contact-link" target="_blank">
+          <span class="contact-link-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+            </svg>
+          </span> Through Github 
+        </a>
+        <a href="https://www.linkedin.com/in/geetha-krishna-venkatesh-maroju-742416269/" class="contact-link" target="_blank">
+          <span class="contact-link-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+          </span> Through LinkedIn 
+        </a>
+        
+        
+        <!-- Add more links (Kaggle, HackerRank, LeetCode, etc.) -->
+      </div>
+    </div>
+    <div class="fade-up">
+      <form class="contact-form" action="https://formspree.io/f/xjgajbkk" method="POST">
+        <div class="form-group">
+          <label class="form-label">>>> name</label>
+          <input type="text" name="name" class="form-input" placeholder='name = "Your Name"' />
+        </div>
+        <div class="form-group">
+          <label class="form-label">>>> email</label>
+          <input type="email" name="email" class="form-input" placeholder='email = "your@email.com"' />
+        </div>
+        <div class="form-group">
+          <label class="form-label">>>> message</label>
+          <textarea name="message" class="form-textarea" rows="5" placeholder='message = "Hey, I would love to collaborate on..."'></textarea>
+        </div>
+        <button type="submit" class="form-submit">SEND MESSAGE →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">MGKV.py</div>
+  <div class="footer-copy">© 2026 Mgk. Built with Python passion & lots of ☕</div>
+</footer>
+
+<script>
+    // ── CURSOR GLOW EFFECT ──
+// ── AURORA LIVE WALLPAPER EFFECT ──
+const canvas = document.getElementById('aurora-canvas');
+const ctx = canvas.getContext('2d');
+
+let mouseX = window.innerWidth / 2;
+let mouseY = window.innerHeight / 2;
+let targetX = mouseX, targetY = mouseY;
+let time = 0;
+const SPEED = 0.99;
+let globalAlpha = 1;
+let isMoving = false;
+let idleTimer = null;
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+document.addEventListener('mousemove', (e) => {
+  targetX = e.clientX;
+  targetY = e.clientY;
+  isMoving = true;
+  globalAlpha = 1;
+  clearTimeout(idleTimer);
+  idleTimer = setTimeout(() => {
+    isMoving = false;
+  }, 2000);
+});
+
+window.addEventListener('scroll', () => {
+  isMoving = true;
+  globalAlpha = 1;
+  clearTimeout(idleTimer);
+  idleTimer = setTimeout(() => {
+    isMoving = false;
+  }, 2000);
+});
+
+const colors = [
+  { r: 0,   g: 255, b: 255 },  // pure cyan
+  { r: 180, g: 0,   b: 255 },  // pure violet
+  { r: 0,   g: 255, b: 150 },  // pure neon green
+  { r: 0,   g: 150, b: 255 },  // pure electric blue
+];
+function lerp(a, b, t) { return a + (b - a) * t; }
+
+function drawAurora() {
+  mouseX = lerp(mouseX, targetX, SPEED);
+  mouseY = lerp(mouseY, targetY, SPEED);
+  time += 0.008;
+
+  if (!isMoving) {
+    globalAlpha = Math.max(0, globalAlpha - 0.033);
+  } else {
+    globalAlpha = Math.min(1, globalAlpha + 0.15);
+  }
+  if (globalAlpha <= 0) {
+    requestAnimationFrame(drawAurora);
+    return;
+  }
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.globalAlpha = globalAlpha;
+
+  const blobs = [
+    {
+      x: mouseX + Math.sin(time * 1.2) * 30,
+      y: mouseY + Math.cos(time * 0.9) * 20,
+      r: 70, color: colors[0], alpha: 0.55
+    },
+    {
+      x: mouseX + Math.cos(time * 0.8) * 35,
+      y: mouseY + Math.sin(time * 1.1) * 25,
+      r: 60, color: colors[1], alpha: 0.50
+    },
+    {
+      x: mouseX + Math.sin(time * 1.5 + 1) * 22,
+      y: mouseY + Math.cos(time * 1.3 + 1) * 28,
+      r: 50, color: colors[2], alpha: 0.45
+    },
+    {
+      x: mouseX + Math.cos(time * 0.6 + 2) * 40,
+      y: mouseY + Math.sin(time * 0.7 + 2) * 30,
+      r: 65, color: colors[3], alpha: 0.48
+    },
+  ];
+
+  blobs.forEach(blob => {
+    const grad = ctx.createRadialGradient(
+      blob.x, blob.y, 0,
+      blob.x, blob.y, blob.r
+    );
+    grad.addColorStop(0,   `rgba(${blob.color.r},${blob.color.g},${blob.color.b},${blob.alpha})`);
+    grad.addColorStop(0.4, `rgba(${blob.color.r},${blob.color.g},${blob.color.b},${blob.alpha * 0.5})`);
+    grad.addColorStop(1,   `rgba(${blob.color.r},${blob.color.g},${blob.color.b},0)`);
+
+    ctx.beginPath();
+    ctx.arc(blob.x, blob.y, blob.r, 0, Math.PI * 2);
+    ctx.fillStyle = grad;
+    ctx.fill();
+  });
+  ctx.globalAlpha = 1;
+  requestAnimationFrame(drawAurora);
+}
+drawAurora();
+// ── TYPED TEXT ANIMATION ──
+const phrases = [
+  "FastAPI & Flask APIs",
+  "Azure Cloud Solutions",
+  "Machine Learning",
+  "Computer Vision",
+  "Data Science & Analytics",
+  "AI-Integrated Applications"
+];
+
+const roles = [
+  "Python Developer",
+  "Software Developer",
+  "Junior Python Engineer",
+  "Backend Developer",
+  "ML Engineer",
+  "Azure Cloud Developer",
+  "Junior Software Engineer",
+  "Data Science Engineer"
+];
+
+let phraseIdx = 0, charIdx = 0, deleting = false;
+function typeEffect() {
+  const el = document.getElementById('typed');
+  if (!el) return;
+  const current = phrases[phraseIdx];
+  if (!deleting) {
+    el.textContent = current.slice(0, charIdx + 1);
+    charIdx++;
+    if (charIdx === current.length) { deleting = true; setTimeout(typeEffect, 1800); return; }
+    setTimeout(typeEffect, 80);
+  } else {
+    el.textContent = current.slice(0, charIdx - 1);
+    charIdx--;
+    if (charIdx === 0) { deleting = false; phraseIdx = (phraseIdx + 1) % phrases.length; }
+    setTimeout(typeEffect, 40);
+  }
+}
+typeEffect();
+
+let roleIdx = 0, roleCharIdx = 0, roleDeleting = false;
+function typeRoles() {
+  const el = document.getElementById('typed2');
+  if (!el) return;
+  const current = roles[roleIdx];
+  if (!roleDeleting) {
+    el.textContent = current.slice(0, roleCharIdx + 1);
+    roleCharIdx++;
+    if (roleCharIdx === current.length) { roleDeleting = true; setTimeout(typeRoles, 2000); return; }
+    setTimeout(typeRoles, 80);
+  } else {
+    el.textContent = current.slice(0, roleCharIdx - 1);
+    roleCharIdx--;
+    if (roleCharIdx === 0) { roleDeleting = false; roleIdx = (roleIdx + 1) % roles.length; }
+    setTimeout(typeRoles, 40);
+  }
+}
+typeRoles();
+
+// ── SCROLL ANIMATIONS ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// ── SKILL BAR ANIMATION ──
+const skillObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('.skill-fill').forEach(bar => {
+        const w = bar.getAttribute('data-width');
+        bar.style.width = w + '%';
+      });
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.skill-category').forEach(el => skillObserver.observe(el));
+
+// ── FORM SUBMIT ──
+function handleFormSubmit() {
+  const inputs = document.querySelectorAll('.form-input, .form-textarea');
+  let valid = true;
+  inputs.forEach(i => { if (!i.value.trim()) valid = false; });
+  if (!valid) { alert('Please fill in all fields!'); return; }
+  const btn = document.querySelector('.form-submit');
+  btn.textContent = '✓ MESSAGE SENT!';
+  btn.style.background = 'var(--accent3)';
+  setTimeout(() => {
+    btn.textContent = 'SEND MESSAGE →';
+    btn.style.background = '';
+    inputs.forEach(i => i.value = '');
+  }, 3000);
+}
+
+// Apply default filter on load
+document.querySelectorAll('.project-card').forEach(card => {
+  const cats = card.getAttribute('data-category') || '';
+  if (!cats.includes('ml')) {
+    card.classList.add('hidden');
+  }
+});
+// Set active style on first button on load
+document.querySelector('.filter-btn[data-filter="ml"]').classList.add('active');
+
+// ── CERT FILTER ──
+document.querySelectorAll('.cert-card').forEach(card => {
+  const cats = card.getAttribute('data-cert-category') || '';
+  if (!cats.includes('python')) card.classList.add('hidden');
+});
+document.querySelector('.cert-filter-btn[data-cert-filter="python"]').classList.add('active');
+
+document.querySelectorAll('.cert-filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.cert-filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.getAttribute('data-cert-filter');
+    document.querySelectorAll('.cert-card').forEach(card => {
+      const cats = card.getAttribute('data-cert-category') || '';
+      if (filter === 'all' || cats.includes(filter)) {
+        card.classList.remove('hidden');
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+  });
+});
+// ── PROJECT FILTER ──
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.getAttribute('data-filter');
+    document.querySelectorAll('.project-card').forEach(card => {
+      const cats = card.getAttribute('data-category') || '';
+      if (filter === 'all' || cats.includes(filter)) {
+        card.classList.remove('hidden');
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+  });
+});
+
+// ── ACTIVE NAV HIGHLIGHT ──
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 200) current = s.getAttribute('id');
+  });
+  navLinks.forEach(a => {
+    a.style.color = a.getAttribute('href') === '#' + current ? 'var(--accent)' : '';
+  });
+});
+
+// ── TERMINAL BACKGROUND ANIMATION ──
+(function() {
+  const canvas = document.getElementById('bgCanvas');
+  const wrap = document.getElementById('termWrap');
+  if (!canvas || !wrap) return;
+  const ctx = canvas.getContext('2d');
+
+  function resize() {
+    canvas.width = wrap.offsetWidth;
+    canvas.height = wrap.offsetHeight;
+  }
+  resize();
+
+  const snippets = [
+    'import asyncio','from fastapi import FastAPI','@app.get("/health")',
+    'def predict(x):','async def main():','return {"status": 200}',
+    'pd.DataFrame()','np.array([])','model.fit(X,y)','torch.tensor()',
+    'class MLModel:','if __name__=="__main__":','yield db.session',
+    'await response.json()','sklearn.metrics','blob_client.upload()',
+    'cv2.imread()','mediapipe.solutions','CosmosClient(url)',
+    'BlobServiceClient','requests.get(url)','json.dumps(data)',
+    'logging.info()','os.environ.get()','# TODO: optimize',
+    'try:\n  pass','except Exception as e:','with open(f) as fp:',
+    'list(map(fn, xs))','[x for x in data]','lambda x: x*2',
+  ];
+
+  const COLS = [
+    'rgba(0,245,255,',
+    'rgba(124,58,237,',
+    'rgba(16,185,129,',
+    'rgba(245,158,11,',
+  ];
+
+  class FloatingSnippet {
+    constructor() { this.reset(true); }
+    reset(init) {
+      this.text = snippets[Math.floor(Math.random()*snippets.length)];
+      this.x = 20 + Math.random() * (canvas.width - 40);
+      this.y = init ? Math.random() * canvas.height : canvas.height + 20;
+      this.speed = 0.12 + Math.random() * 0.25;
+      this.opacity = 0;
+      this.maxOpacity = 0.14 + Math.random() * 0.14;
+      this.size = 9 + Math.floor(Math.random() * 3);
+      this.color = COLS[Math.floor(Math.random()*COLS.length)];
+      this.phase = Math.random() * Math.PI * 2;
+      this.drift = (Math.random()-0.5) * 0.3;
+      this.life = 0;
+      this.maxLife = 300 + Math.random() * 400;
+    }
+    update() {
+      this.life++;
+      this.y -= this.speed;
+      this.x += Math.sin(this.phase + this.life*0.018) * this.drift;
+      const fadeIn = Math.min(1, this.life / 80);
+      const fadeOut = Math.max(0, 1 - (this.life - (this.maxLife-80)) / 80);
+      this.opacity = this.maxOpacity * Math.min(fadeIn, fadeOut);
+      if (this.life > this.maxLife) this.reset(false);
+    }
+    draw() {
+      ctx.save();
+      ctx.font = `${this.size}px 'Share Tech Mono','Courier New',monospace`;
+      ctx.fillStyle = `${this.color}${this.opacity.toFixed(3)})`;
+      ctx.fillText(this.text, this.x, this.y);
+      ctx.restore();
+    }
+  }
+
+  class MatrixDrop {
+    constructor() { this.reset(true); }
+    reset(init) {
+      this.x = Math.floor(Math.random() * (canvas.width / 14)) * 14 + 7;
+      this.y = init ? Math.random() * canvas.height : -20;
+      this.speed = 0.8 + Math.random() * 1.4;
+      this.len = 4 + Math.floor(Math.random() * 8);
+      this.chars = [];
+      for (let i = 0; i < this.len; i++) {
+        const pool = '0123456789ABCDEF{}[]()_=<>|@#$%&*';
+        this.chars.push(pool[Math.floor(Math.random()*pool.length)]);
+      }
+      this.opacity = 0.11 + Math.random() * 0.11;
+    }
+    update() {
+      this.y += this.speed;
+      if (this.y > canvas.height + this.len * 14) this.reset(false);
+      if (Math.random() < 0.04) {
+        const pool = '0123456789ABCDEF{}[]()_=<>|@#$%&*';
+        const i = Math.floor(Math.random()*this.chars.length);
+        this.chars[i] = pool[Math.floor(Math.random()*pool.length)];
+      }
+    }
+    draw() {
+      ctx.font = '11px monospace';
+      for (let i = 0; i < this.chars.length; i++) {
+        const fade = (i / this.chars.length);
+        const a = this.opacity * (i === this.chars.length-1 ? 1 : fade * 0.6);
+        ctx.fillStyle = `rgba(0,245,255,${a.toFixed(3)})`;
+        ctx.fillText(this.chars[i], this.x, this.y - i * 13);
+      }
+    }
+  }
+
+  const drops = Array.from({length: 28}, () => new MatrixDrop());
+  const floats = Array.from({length: 18}, () => new FloatingSnippet());
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drops.forEach(d => { d.update(); d.draw(); });
+    floats.forEach(f => { f.update(); f.draw(); });
+    requestAnimationFrame(draw);
+  }
+  draw();
+  window.addEventListener('resize', resize);
+
+  
+})();
+</script>
+</body>
+</html>
